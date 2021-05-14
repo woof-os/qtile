@@ -207,7 +207,8 @@ widgets_list = [
                        padding = 6,
                        ),
               widget.TextBox(
-                       text = '',
+                       text = 'caret-left',
+                       font="Font Awesome 5 Free Solid",
                        foreground = woofcolors.power2,
                        padding = 0,
                        fontsize = 43
@@ -217,7 +218,8 @@ widgets_list = [
                        padding = 5
                        ),
               widget.TextBox(
-                       text = '',
+                       text = 'caret-left',
+                       font="Font Awesome 5 Free Solid",
                        background = woofcolors.power2,
                        foreground = woofcolors.power1,
                        padding = 0,
@@ -237,7 +239,8 @@ widgets_list = [
                        padding = 5
                        ),
               widget.TextBox(
-                       text='',
+                       text='caret-left',
+                       font="Font Awesome 5 Free Solid",
                        background = woofcolors.power1,
                        foreground = woofcolors.power2,
                        padding = 0,
@@ -262,7 +265,8 @@ widgets_list = [
                        padding = 5
                        ),
               widget.TextBox(
-                       text = '',
+                       text='caret-left',
+                       font="Font Awesome 5 Free Solid",
                        background = woofcolors.power2,
                        foreground = woofcolors.power1,
                        padding = 0,
@@ -274,7 +278,8 @@ widgets_list = [
                        padding = 5
                        ),
               widget.TextBox(
-                       text = '',
+                       text='caret-left',
+                       font="Font Awesome 5 Free Solid",
                        background = woofcolors.power1,
                        foreground = woofcolors.power2,
                        padding = 0,
