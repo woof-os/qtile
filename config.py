@@ -306,7 +306,7 @@ widgets_list = [
 
 screens = [
     Screen(
-        wallpaper='~/Pictures/wallpaper.jpg',
+        wallpaper='~/.config/qtile/wallpaper.jpg',
         wallpaper_mode='fill',
         top=bar.Bar(widgets_list,
             24,
