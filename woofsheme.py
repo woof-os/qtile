@@ -1,3 +1,5 @@
+import json
+
 class ColorScheme():
 	def __init__(self, bg, fg, **kwargs):
 		self.bg = bg
@@ -45,13 +47,13 @@ class WoofScheme(ColorScheme):
 
 		self.window_name = self.active
 
+	def get_from_json(self, path_to_json: str):
+		with open(path_to_json) as json_file:
+			self.color_dict: dict = json.load(json_file)
+			self.__dict__.update(self.color_dict)
 
-		
-		
-		
+		self.current_screen_tab = self.bg
 
-		
-
-		
-
-		
+	def get_from_dict(self, dict_: dict):
+		self.__dict__.update(dict_)
+		self.current_screen_tab = self.bg

@@ -24,6 +24,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 from typing import List, Text  # noqa: F401
 
 from libqtile import bar, layout, widget
@@ -35,6 +36,7 @@ from woofsheme import WoofScheme
 
 # color stuff
 woofcolors = WoofScheme()
+woofcolors.get_from_json("{}/.config/qtile/colors.json".format(os.getenv("HOME")))
 
 # config
 
@@ -116,6 +118,7 @@ group_names = [("code", {'layout': 'monadtall'}),
                ("headset", {'layout': 'monadtall'}),
                ("comment", {'layout': 'monadtall'}),
                ("file-word", {'layout': 'monadtall'}),
+               ("gamepad", {'layout': 'max'}),
                ("bone", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
