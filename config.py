@@ -40,6 +40,13 @@ woofcolors.get_from_json("{}/.config/qtile/colors.json".format(os.getenv("HOME")
 
 # config
 
+#startup#
+
+lazy.to_screen(1)
+lazy.spawn("picom")
+
+#       #
+
 mod = "mod4"
 terminal = guess_terminal()
 
@@ -229,7 +236,8 @@ widgets_list = [
                        fontsize = 43
                        ),
               widget.TextBox(
-                       text = " 🖬",
+                       text = "microchip",
+                       font="Font Awesome 5 Free Solid",
                        foreground = woofcolors.group_name,
                        background = woofcolors.power1,
                        padding = 0,
