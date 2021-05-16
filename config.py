@@ -25,6 +25,7 @@
 # SOFTWARE.
 
 import os
+import json
 from typing import List, Text  # noqa: F401
 
 from libqtile import bar, layout, widget
@@ -32,20 +33,15 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
-from woofsheme import WoofScheme
-
-# color stuff
-woofcolors = WoofScheme()
-woofcolors.get_from_json("{}/.config/qtile/colors.json".format(os.getenv("HOME")))
-
-# config
-
-#startup#
 
 lazy.to_screen(1)
 lazy.spawn("picom")
 
-#       #
+with open("{}/.config/qtile/settings.json".format(os.getenv("HOME"))) as file:
+    settings = json.load(file)
+
+colors: dict = settings["colors"]
+looks: dict = settings["looks"]
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -126,6 +122,7 @@ group_names = [("code", {'layout': 'monadtall'}),
                ("comment", {'layout': 'monadtall'}),
                ("file-word", {'layout': 'monadtall'}),
                ("gamepad", {'layout': 'max'}),
+               ("tv", {'layout' : 'max'}),
                ("bone", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -163,44 +160,44 @@ widgets_list = [
               widget.Sep(
                        linewidth = 0,
                        padding = 6,
-                       foreground = woofcolors.fg,
-                       background = woofcolors.power2
+                       foreground = colors["fg"],
+                       background = colors["power2"]
                        ),
              widget.Sep(
                        linewidth = 0,
                        padding = 6,
-                       foreground = woofcolors.fg,
-                       background = woofcolors.power2
+                       foreground = colors["fg"],
+                       background = colors["power2"]
                        ),
               widget.GroupBox(
                        font = "Font Awesome 5 Free Solid",
                        padding_y = 5,
                        padding_x = 3,
                        borderwidth = 3,
-                       active = woofcolors.active,
-                       inactive = woofcolors.inactive,
+                       active = colors["active"],
+                       inactive = colors["inactive"],
                        rounded = False,
-                       highlight_color = woofcolors.power1,
+                       highlight_color = colors["power1"],
                        highlight_method = "line",
-                       this_current_screen_border = woofcolors.bg,
-                       this_screen_border = woofcolors.power1,
-                       other_current_screen_border = woofcolors.window_name,
-                       other_screen_border = woofcolors.bg,
-                       foreground = woofcolors.butter,
-                       background = woofcolors.power2
+                       this_current_screen_border = colors["bg"],
+                       this_screen_border = colors["power1"],
+                       other_current_screen_border = colors["window_name"],
+                       other_screen_border = colors["bg"],
+                       foreground = colors["butter"],
+                       background = colors["power2"]
                        ),
               widget.Prompt(
                        font = "Ubuntu Mono",
                        padding = 10,
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power1
+                       foreground = colors["group_name"],
+                       background = colors["power1"]
                        ),
               widget.TextBox(
                   font= "Font Awesome 5 Free Solid",
                   text= "caret-right",
                   fontsize= 43,
                   padding=0,
-                  foreground=woofcolors.power2
+                  foreground=colors["power2"]
               ),
               widget.Sep(
                        linewidth = 0,
@@ -208,7 +205,7 @@ widgets_list = [
                        ),
               widget.WindowName(
                        font="Ubuntu",
-                       foreground = woofcolors.window_name,
+                       foreground = colors["window_name"],
                        padding = 0
                        ),
 
@@ -219,101 +216,100 @@ widgets_list = [
               widget.TextBox(
                        text = 'caret-left',
                        font="Font Awesome 5 Free Solid",
-                       foreground = woofcolors.power2,
+                       foreground = colors["power2"],
                        padding = 0,
                        fontsize = 43
                        ),
               widget.Systray(
-                       background = woofcolors.power2,
+                       background = colors["power2"],
                        padding = 5
                        ),
               widget.TextBox(
                        text = 'caret-left',
                        font="Font Awesome 5 Free Solid",
-                       background = woofcolors.power2,
-                       foreground = woofcolors.power1,
+                       background = colors["power2"],
+                       foreground = colors["power1"],
                        padding = 0,
                        fontsize = 43
                        ),
               widget.TextBox(
                        text = "microchip",
                        font="Font Awesome 5 Free Solid",
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power1,
+                       foreground = colors["group_name"],
+                       background = colors["power1"],
                        padding = 0,
                        fontsize = 14
                        ),
               widget.Memory(
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power1,
-                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                       foreground = colors["group_name"],
+                       background = colors["power1"],
+                       mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-terminal' + ' -e htop')},
                        padding = 5
                        ),
               widget.TextBox(
                        text='caret-left',
                        font="Font Awesome 5 Free Solid",
-                       background = woofcolors.power1,
-                       foreground = woofcolors.power2,
+                       background = colors["power1"],
+                       foreground = colors["power2"],
                        padding = 0,
                        fontsize = 43
                        ),
             #   widget.TextBox(
             #            text = '',
-            #            background = woofcolors.power1,
-            #            foreground = woofcolors.power2,
+            #            background = colors["power1"],
+            #            foreground = colors["power2"],
             #            padding = 0,
             #            fontsize = 43
             #            ),
               widget.TextBox(
                       text = " Vol:",
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power2,
+                       foreground = colors["group_name"],
+                       background = colors["power2"],
                        padding = 0
                        ),
               widget.Volume(
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power2,
+                       foreground = colors["group_name"],
+                       background = colors["power2"],
                        padding = 5
                        ),
               widget.TextBox(
                        text='caret-left',
                        font="Font Awesome 5 Free Solid",
-                       background = woofcolors.power2,
-                       foreground = woofcolors.power1,
+                       background = colors["power2"],
+                       foreground = colors["power1"],
                        padding = 0,
                        fontsize = 43
                        ),
               widget.CurrentLayout(
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power1,
+                       foreground = colors["group_name"],
+                       background = colors["power1"],
                        padding = 5
                        ),
               widget.TextBox(
                        text='caret-left',
                        font="Font Awesome 5 Free Solid",
-                       background = woofcolors.power1,
-                       foreground = woofcolors.power2,
+                       background = colors["power1"],
+                       foreground = colors["power2"],
                        padding = 0,
                        fontsize = 43
                        ),
               widget.Clock(
-                       foreground = woofcolors.group_name,
-                       background = woofcolors.power2,
+                       foreground = colors["group_name"],
+                       background = colors["power2"],
                        format = "%A, %B %d - %H:%M "
                        ),
               ]
 
-
 screens = [
-    Screen(
-        wallpaper='~/.config/qtile/wallpaper.jpg',
-        wallpaper_mode='fill',
-        top=bar.Bar(widgets_list,
-            24,
-            background=woofcolors.bg,
-        ),
-    ),
-]
+            Screen(
+                    wallpaper=looks["wallpaper"],
+                    wallpaper_mode='fill',
+                    top=bar.Bar(widgets_list,
+                        24,
+                        background=colors["bg"],
+                    ),
+                )
+          ]
 
 # Drag floating layouts.
 mouse = [

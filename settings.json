@@ -1,0 +1,19 @@
+
+{
+    "colors" : {
+        "bg" : "#041D2E",
+        "fg" : "#AFBAD0",
+        "current_screen_tab" : "#A9A8C1",
+        "group_name" : "#FFFFFF",
+        "power1" : "#62A0E8",
+        "power2" : "#2E72BE",
+        "active" : "#ECE4F4",
+        "inactive" : "#DFDFDFDF",
+        "window_name" : "#ECE4F4"
+    },
+    "looks" : {
+        "wallpaper" : "~/.config/qtile/wallpaper.jpg",
+        "caret_font_size" : 43,
+        "caret_font" : "Font Awesome 5 Free Solid"
+    }
+}
