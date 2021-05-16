@@ -170,7 +170,7 @@ widgets_list = [
                        background = colors["power2"]
                        ),
               widget.GroupBox(
-                       font = "Font Awesome 5 Free Solid",
+                       font = looks["caret_font"],
                        padding_y = 5,
                        padding_x = 3,
                        borderwidth = 3,
@@ -183,7 +183,7 @@ widgets_list = [
                        this_screen_border = colors["power1"],
                        other_current_screen_border = colors["window_name"],
                        other_screen_border = colors["bg"],
-                       foreground = colors["butter"],
+                       foreground = colors["fg"],
                        background = colors["power2"]
                        ),
               widget.Prompt(
@@ -193,9 +193,9 @@ widgets_list = [
                        background = colors["power1"]
                        ),
               widget.TextBox(
-                  font= "Font Awesome 5 Free Solid",
+                  font= looks["caret_font"],
                   text= "caret-right",
-                  fontsize= 43,
+                  fontsize= looks["caret_font_size"],
                   padding=0,
                   foreground=colors["power2"]
               ),
@@ -215,10 +215,10 @@ widgets_list = [
                        ),
               widget.TextBox(
                        text = 'caret-left',
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        foreground = colors["power2"],
                        padding = 0,
-                       fontsize = 43
+                       fontsize = looks["caret_font_size"]
                        ),
               widget.Systray(
                        background = colors["power2"],
@@ -226,15 +226,15 @@ widgets_list = [
                        ),
               widget.TextBox(
                        text = 'caret-left',
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        background = colors["power2"],
                        foreground = colors["power1"],
                        padding = 0,
-                       fontsize = 43
+                       fontsize = looks["caret_font_size"]
                        ),
               widget.TextBox(
                        text = "microchip",
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        foreground = colors["group_name"],
                        background = colors["power1"],
                        padding = 0,
@@ -248,18 +248,18 @@ widgets_list = [
                        ),
               widget.TextBox(
                        text='caret-left',
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        background = colors["power1"],
                        foreground = colors["power2"],
                        padding = 0,
-                       fontsize = 43
+                       fontsize = looks["caret_font_size"]
                        ),
             #   widget.TextBox(
             #            text = '',
             #            background = colors["power1"],
             #            foreground = colors["power2"],
             #            padding = 0,
-            #            fontsize = 43
+            #            fontsize = looks["caret_font_size"]
             #            ),
               widget.TextBox(
                       text = " Vol:",
@@ -274,11 +274,11 @@ widgets_list = [
                        ),
               widget.TextBox(
                        text='caret-left',
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        background = colors["power2"],
                        foreground = colors["power1"],
                        padding = 0,
-                       fontsize = 43
+                       fontsize = looks["caret_font_size"]
                        ),
               widget.CurrentLayout(
                        foreground = colors["group_name"],
@@ -287,11 +287,11 @@ widgets_list = [
                        ),
               widget.TextBox(
                        text='caret-left',
-                       font="Font Awesome 5 Free Solid",
+                       font=looks["caret_font"],
                        background = colors["power1"],
                        foreground = colors["power2"],
                        padding = 0,
-                       fontsize = 43
+                       fontsize = looks["caret_font_size"]
                        ),
               widget.Clock(
                        foreground = colors["group_name"],
