@@ -267,7 +267,7 @@ widgets_list = [
                        foreground = colors["group_name"],
                        background = colors["power2"],
                        fontsize = 14,
-                       padding = 0,
+                       padding = 0
                        ),
               widget.Volume(
                        foreground = colors["group_name"],
