@@ -133,14 +133,14 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 
 layouts = [
-    layout.Columns(border_normal='#635b59',border_focus='#71d75f', margin=3),
+    layout.Columns(border_normal=colors['power2'],border_focus=colors['power1'], margin=3),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    layout.Stack(border_normal='#635b59',border_focus='#71d75f', margin=3, num_stacks=2),
-    layout.Floating(border_normal='#635b59',border_focus='#71d75f', margin=3),
+    layout.Stack(border_normal=colors['power2'],border_focus=colors['power1'], margin=3, num_stacks=2),
+    layout.Floating(border_normal=colors['power2'],border_focus=colors['power1'], margin=3),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_normal='#635b59',border_focus='#71d75f', margin=3),
+    layout.MonadTall(border_normal=colors['power2'] ,border_focus=colors['power1'], margin=3),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -238,7 +238,7 @@ widgets_list = [
                        foreground = colors["group_name"],
                        background = colors["power1"],
                        padding = 0,
-                       fontsize = 14
+                       fontsize = 11
                        ),
               widget.Memory(
                        foreground = colors["group_name"],
@@ -262,10 +262,12 @@ widgets_list = [
             #            fontsize = looks["caret_font_size"]
             #            ),
               widget.TextBox(
-                      text = " Vol:",
+                       text = "volume-off",
+                       font = "Font Awesome 5 Free Solid",
                        foreground = colors["group_name"],
                        background = colors["power2"],
-                       padding = 0
+                       fontsize = 14,
+                       padding = 0,
                        ),
               widget.Volume(
                        foreground = colors["group_name"],
@@ -305,7 +307,7 @@ screens = [
                     wallpaper=looks["wallpaper"],
                     wallpaper_mode='fill',
                     top=bar.Bar(widgets_list,
-                        24,
+                        22,
                         background=colors["bg"],
                     ),
                 )

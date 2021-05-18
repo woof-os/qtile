@@ -13,7 +13,7 @@
     },
     "looks" : {
         "wallpaper" : "~/.config/qtile/wallpaper.jpg",
-        "caret_font_size" : 43,
+        "caret_font_size" : 40.5,
         "caret_font" : "Font Awesome 5 Free Solid"
     }
 }
