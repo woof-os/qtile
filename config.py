@@ -1,38 +1,13 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import json
-from typing import List, Text  # noqa: F401
+from typing import List, Text
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import qtile
+from libqtile import hook
 
 lazy.to_screen(1)
 lazy.spawn("picom")
@@ -76,6 +51,12 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
+    # Shrink :triumph:
+    Key([mod, "control"], "a", lazy.layout.shrink_left(),
+        desc="Shrink window on left"),
+    Key([mod, "control"], "s", lazy.layout.shrink_right(),
+        desc="Shrink window on right"),
+
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -96,7 +77,7 @@ keys = [
         desc="Spawn a command using a prompt widget"),
 ]
 
-groups = [Group(i) for i in "123456"]
+groups = [Group(i) for i in "123456780"]
 
 for i in groups:
     keys.extend([
@@ -133,14 +114,14 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 
 layouts = [
-    layout.Columns(border_normal=colors['power2'],border_focus=colors['power1'], margin=3),
+    layout.Columns(border_normal=colors['power2'],border_focus=colors['power1'], margin=5),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
-    layout.Stack(border_normal=colors['power2'],border_focus=colors['power1'], margin=3, num_stacks=2),
-    layout.Floating(border_normal=colors['power2'],border_focus=colors['power1'], margin=3),
+    layout.Stack(border_normal=colors['power2'],border_focus=colors['power1'], margin=5, num_stacks=2),
+    layout.Floating(border_normal=colors['power2'],border_focus=colors['power1'], margin=5),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_normal=colors['power2'] ,border_focus=colors['power1'], margin=3),
+    layout.MonadTall(border_normal=colors['power2'] ,border_focus=colors['power1'], margin=5)
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -150,7 +131,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Ubuntu Mono',
+    font='Mononoki NF',
     fontsize=12,
     padding=3,
 )
@@ -161,13 +142,13 @@ widgets_list = [
                        linewidth = 0,
                        padding = 6,
                        foreground = colors["fg"],
-                       background = colors["power2"]
+                    #    background = colors["power2"]
                        ),
              widget.Sep(
                        linewidth = 0,
                        padding = 6,
                        foreground = colors["fg"],
-                       background = colors["power2"]
+                    #    background = colors["power2"]
                        ),
               widget.GroupBox(
                        font = looks["caret_font"],
@@ -176,35 +157,35 @@ widgets_list = [
                        borderwidth = 3,
                        active = colors["active"],
                        inactive = colors["inactive"],
-                       rounded = False,
-                       highlight_color = colors["power1"],
+                       rounded = False, 
                        highlight_method = "line",
-                       this_current_screen_border = colors["bg"],
+                       highlight_color = colors["bg"],
+                       this_current_screen_border = colors["current_screen_tab"],
                        this_screen_border = colors["power1"],
                        other_current_screen_border = colors["window_name"],
                        other_screen_border = colors["bg"],
                        foreground = colors["fg"],
-                       background = colors["power2"]
+                    #    background = colors["power2"]
                        ),
               widget.Prompt(
                        font = "Ubuntu Mono",
                        padding = 10,
-                       foreground = colors["group_name"],
-                       background = colors["power1"]
+                       foreground = colors["power1"],
+                    #    background = colors["power1"]
                        ),
-              widget.TextBox(
-                  font= looks["caret_font"],
-                  text= "caret-right",
-                  fontsize= looks["caret_font_size"],
-                  padding=0,
-                  foreground=colors["power2"]
-              ),
+            #   widget.TextBox(
+            #       font= looks["caret_font"],
+            #       text= "caret-right",
+            #       fontsize= looks["caret_font_size"],
+            #       padding=0,
+            #       foreground=colors["power2"]
+            #   ),
               widget.Sep(
                        linewidth = 0,
                        padding = 40,
                        ),
               widget.WindowName(
-                       font="Ubuntu",
+                       font="Mononoki NF Bold",
                        foreground = colors["window_name"],
                        padding = 0
                        ),
@@ -213,47 +194,54 @@ widgets_list = [
                        linewidth = 0,
                        padding = 6,
                        ),
-              widget.TextBox(
-                       text = 'caret-left',
-                       font=looks["caret_font"],
-                       foreground = colors["power2"],
-                       padding = 0,
-                       fontsize = looks["caret_font_size"]
-                       ),
+            #   widget.TextBox(
+            #            text = 'caret-left',
+            #            font=looks["caret_font"],
+            #            foreground = colors["power2"],
+            #            padding = 0,
+            #            fontsize = looks["caret_font_size"]
+            #            ),
               widget.Systray(
-                       background = colors["power2"],
-                       padding = 5
+                    #    background = colors["power2"],
+                       foreground = colors["power2"],
+                       padding = 10
                        ),
-              widget.TextBox(
-                       text = 'caret-left',
-                       font=looks["caret_font"],
-                       background = colors["power2"],
-                       foreground = colors["power1"],
-                       padding = 0,
-                       fontsize = looks["caret_font_size"]
-                       ),
+              widget.Sep(
+                  linewidth=0,
+                  padding = 12,
+              ),
+            #   widget.TextBox(
+            #            text = 'grip-lines-vertical',
+            #            font = looks["caret_font"],
+            #            foreground = colors["fg"],
+            #            fontsize=20
+            #            ),
+              widget.Sep(
+                  linewidth=0,
+                  padding = 5,
+              ),
               widget.TextBox(
                        text = "microchip",
                        font=looks["caret_font"],
-                       foreground = colors["group_name"],
-                       background = colors["power1"],
+                       foreground = colors["power1"],
+                    #    background = colors["power1"],
                        padding = 0,
                        fontsize = 11
                        ),
               widget.Memory(
-                       foreground = colors["group_name"],
-                       background = colors["power1"],
+                       foreground = colors["power1"],
+                    #    background = colors["power1"],
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-terminal' + ' -e htop')},
                        padding = 5
                        ),
-              widget.TextBox(
-                       text='caret-left',
-                       font=looks["caret_font"],
-                       background = colors["power1"],
-                       foreground = colors["power2"],
-                       padding = 0,
-                       fontsize = looks["caret_font_size"]
-                       ),
+            #   widget.TextBox(
+            #            text='caret-left',
+            #            font=looks["caret_font"],
+            #            background = colors["power1"],
+            #            foreground = colors["power2"],
+            #            padding = 0,
+            #            fontsize = looks["caret_font_size"]
+            #            ),
             #   widget.TextBox(
             #            text = '',
             #            background = colors["power1"],
@@ -261,54 +249,88 @@ widgets_list = [
             #            padding = 0,
             #            fontsize = looks["caret_font_size"]
             #            ),
+              widget.Sep(
+                linewidth = 0,
+                padding = 6,
+                ),
+              widget.TextBox(
+                foreground = colors["power2"],
+                text="signal",
+                font="Font Awesome 5 Free Solid"
+              ),
+              widget.Net(
+                       foreground = colors["power2"],
+                       format = '{down}',
+                       ),
+
+              widget.Sep(
+                  linewidth = 0,
+                  padding = 6,
+              ),
               widget.TextBox(
                        text = "volume-off",
                        font = "Font Awesome 5 Free Solid",
-                       foreground = colors["group_name"],
-                       background = colors["power2"],
+                       foreground = colors["power1"],
+                    #    background = colors["power2"],
                        fontsize = 14,
                        padding = 0
                        ),
               widget.Volume(
-                       foreground = colors["group_name"],
-                       background = colors["power2"],
-                       padding = 5
-                       ),
-              widget.TextBox(
-                       text='caret-left',
-                       font=looks["caret_font"],
-                       background = colors["power2"],
                        foreground = colors["power1"],
-                       padding = 0,
-                       fontsize = looks["caret_font_size"]
+                    #    background = colors["power2"]
                        ),
+            #   widget.TextBox(
+            #            text='caret-left',
+            #            font=looks["caret_font"],
+            #         #    background = colors["power2"],
+            #            foreground = colors["power1"],
+            #            padding = 0,
+            #            padding_bottom = 100,
+            #            fontsize = looks["caret_font_size"]
+            #            ),
+              widget.Sep(
+                linewidth = 0,
+                padding = 6,
+                ),
+              widget.TextBox(
+                foreground = colors["power2"],
+                text="th-large",
+                font="Font Awesome 5 Free Solid"
+              ),
               widget.CurrentLayout(
-                       foreground = colors["group_name"],
-                       background = colors["power1"],
+                       foreground = colors["power2"],
+                    #    background = colors["power1"],
                        padding = 5
                        ),
-              widget.TextBox(
-                       text='caret-left',
-                       font=looks["caret_font"],
-                       background = colors["power1"],
-                       foreground = colors["power2"],
-                       padding = 0,
-                       fontsize = looks["caret_font_size"]
+            #   widget.TextBox(
+            #            text='caret-left',
+            #            font=looks["caret_font"],
+            #         #    background = colors["power1"],
+            #            foreground = colors["power2"],
+            #            padding = 0,
+            #            fontsize = looks["caret_font_size"]
+            #            ),
+              widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
                        ),
               widget.Clock(
-                       foreground = colors["group_name"],
-                       background = colors["power2"],
+                       foreground = colors["power1"],
+                    #    background = colors["power2"],
                        format = "%A, %B %d - %H:%M "
                        ),
               ]
+
 
 screens = [
             Screen(
                     wallpaper=looks["wallpaper"],
                     wallpaper_mode='fill',
                     top=bar.Bar(widgets_list,
-                        22,
+                        24,
                         background=colors["bg"],
+                        opacity = 1,
+                        margin = 5,
                     ),
                 )
           ]
@@ -340,6 +362,11 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+@hook.subscribe.startup_once
+def autostart():
+    lazy.to_screen(1)
+    lazy.spawn('picom')
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
