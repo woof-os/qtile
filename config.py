@@ -364,7 +364,7 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 @hook.subscribe.startup_once
-def autostart():
+def startup():
     lazy.to_screen(1)
     lazy.spawn('picom')
 
