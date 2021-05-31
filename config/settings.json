@@ -1,0 +1,24 @@
+{
+    "colors": {
+        "bg": "#2e3440",
+        "fg": "#88c0d0",
+        "current_screen_tab": "#b48ead",
+        "power2": "#81a1c1",
+        "power1": "#b48ead",
+        "right_bg": "#5e81ac",
+        "active": "#eceff4",
+        "inactive": "#d8dee9",
+        "window_name": "#eceff4"
+    },
+    "looks": {
+        "wallpaper": "~/.config/qtile/wallpaper.png",
+        "caret_font_size": 40,
+        "caret_font": "Font Awesome 5 Free Solid",
+        "border-margin": 5,
+        "panel-opacity": 0.9,
+        "panel-size": 24
+    },
+    "display": {
+        "screen-count": 1
+    }
+}

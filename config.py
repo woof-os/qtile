@@ -1,5 +1,6 @@
 import os
 import json
+import subprocess
 from typing import List, Text
 
 from libqtile import bar, layout, widget
@@ -8,18 +9,34 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import qtile
 from libqtile import hook
+from pywal import wallpaper
 
-lazy.to_screen(1)
-lazy.spawn("picom")
-
-with open("{}/.config/qtile/settings.json".format(os.getenv("HOME"))) as file:
+with open("{}/.config/qtile/config/settings.json".format(os.getenv("HOME"))) as file:
     settings = json.load(file)
 
-colors: dict = settings["colors"]
 looks: dict = settings["looks"]
+display: dict = settings["display"]
+
+with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as file:
+    colors_json = json.load(file)
+
+special_clrs = colors_json['special']
+clrs = colors_json['colors']
+wallpaper = colors_json["wallpaper"]
+
+colors = {
+    "bg": clrs['color0'],
+    "fg": special_clrs["foreground"], 
+    "current_screen_tab": clrs['color1'], 
+    "power2": clrs["color15"], 
+    "power1": clrs["color14"], 
+    "active": clrs["color15"], 
+    "inactive": clrs["color14"], 
+    "window_name": special_clrs["foreground"]
+}
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = "xfce4-terminal"
 
 keys = [
     # Switch between windows
@@ -50,12 +67,6 @@ keys = [
         desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-
-    # Shrink :triumph:
-    Key([mod, "control"], "a", lazy.layout.shrink_left(),
-        desc="Shrink window on left"),
-    Key([mod, "control"], "s", lazy.layout.shrink_right(),
-        desc="Shrink window on right"),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -113,21 +124,39 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 
+layout_theme = {"border_width": 2,
+                "margin": 8,
+                "border_focus": colors['power1'],
+                "border_normal": colors['power2']
+                }
+
 layouts = [
-    layout.Columns(border_normal=colors['power2'],border_focus=colors['power1'], margin=5),
-    layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    layout.Stack(border_normal=colors['power2'],border_focus=colors['power1'], margin=5, num_stacks=2),
-    layout.Floating(border_normal=colors['power2'],border_focus=colors['power1'], margin=5),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    layout.MonadTall(border_normal=colors['power2'] ,border_focus=colors['power1'], margin=5)
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.MonadTall(**layout_theme),
+    layout.Max(**layout_theme),
+    layout.Stack(num_stacks=2),
+    layout.RatioTile(**layout_theme),
+    layout.TreeTab(
+         font = "Ubuntu",
+         fontsize = 10,
+         sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
+         section_fontsize = 10,
+         border_width = 2,
+         bg_color = "1c1f24",
+         active_bg = "c678dd",
+         active_fg = "000000",
+         inactive_bg = "a9a1e1",
+         inactive_fg = "1c1f24",
+         padding_left = 0,
+         padding_x = 0,
+         padding_y = 5,
+         section_top = 10,
+         section_bottom = 20,
+         level_shift = 8,
+         vspace = 3,
+         panel_width = 200
+         ),
+    layout.Floating(**layout_theme)
+
 ]
 
 widget_defaults = dict(
@@ -321,25 +350,29 @@ widgets_list = [
                        ),
               ]
 
+screen = Screen(
+                wallpaper=wallpaper,
+                wallpaper_mode='fill',
+                top=bar.Bar(widgets_list,
+                    int(looks['panel-size']),
+                    background=colors["bg"],
+                    opacity = float(looks['panel-opacity']),
+                    margin = int(looks['border-margin']),
+                ),
+            )
 
-screens = [
-            Screen(
-                    wallpaper=looks["wallpaper"],
-                    wallpaper_mode='fill',
-                    top=bar.Bar(widgets_list,
-                        24,
-                        background=colors["bg"],
-                        opacity = 1,
-                        margin = 5,
-                    ),
-                )
-          ]
+screens = []
+
+i = 0
+
+for i in range(display["screen-count"]):
+    screens.append(screen)
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
+    Drag([mod], "Button3", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
+    Drag([mod], "Button1", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
@@ -350,7 +383,7 @@ main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(**layout_theme, float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='confirmreset'),  # gitk
@@ -363,10 +396,11 @@ floating_layout = layout.Floating(float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.startup_once
-def startup():
-    lazy.to_screen(1)
-    lazy.spawn('picom')
+@hook.subscribe.startup
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -376,4 +410,8 @@ def startup():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
+
+
+# ^ dont care about those. I want woof tile! :triumph:
+
 wmname = "WoofTile"
