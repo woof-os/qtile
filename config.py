@@ -25,13 +25,13 @@ clrs = colors_json['colors']
 wallpaper = colors_json["wallpaper"]
 
 colors = {
-    "bg": clrs['color0'],
+    "bg": special_clrs['background'],
     "fg": special_clrs["foreground"], 
     "current_screen_tab": clrs['color1'], 
-    "power2": clrs["color15"], 
-    "power1": clrs["color14"], 
-    "active": clrs["color15"], 
-    "inactive": clrs["color14"], 
+    "power1": clrs["color5"], 
+    "power2": clrs["color6"], 
+    "active": clrs["color7"], 
+    "inactive": clrs["color8"], 
     "window_name": special_clrs["foreground"]
 }
 
@@ -125,7 +125,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 
 layout_theme = {"border_width": 2,
-                "margin": 8,
+                "margin": looks['border-margin'],
                 "border_focus": colors['power1'],
                 "border_normal": colors['power2']
                 }
@@ -396,11 +396,15 @@ floating_layout = layout.Floating(**layout_theme, float_rules=[
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
+@hook.subscribe.startup
+def start():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/start.sh'])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
