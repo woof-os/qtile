@@ -2,7 +2,6 @@ import pywal
 import json
 import os
 
-
 with open(os.getenv('HOME') + '/.config/qtile/config/settings.json', 'r') as file:
     f = json.load(file)
     wal = f['looks']['wallpaper']
