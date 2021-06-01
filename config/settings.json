@@ -1,13 +1,1 @@
-{
-    "looks": {
-        "wallpaper": "/home/acutewoof/Pictures/wallpaper.png",
-        "caret_font_size": 40,
-        "caret_font": "Font Awesome 5 Free Solid",
-        "border-margin": 6,
-        "panel-opacity": 0.9,
-        "panel-size": 24
-    },
-    "display": {
-        "screen-count": 1
-    }
-}
+{"looks": {"wallpaper": "/home/acutewoof/Pictures/wallpaper.png", "caret_font_size": 40, "caret_font": "Font Awesome 5 Free Solid", "border-margin": 6, "panel-opacity": 0.9, "panel-size": 24}, "display": {"screen-count": 1}}
