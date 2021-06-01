@@ -30,8 +30,8 @@ colors = {
     "current_screen_tab": clrs['color1'], 
     "power1": clrs["color5"], 
     "power2": clrs["color6"], 
-    "active": clrs["color7"], 
-    "inactive": clrs["color8"], 
+    "active": clrs["color13"], 
+    "inactive": clrs["color7"], 
     "window_name": special_clrs["foreground"]
 }
 
@@ -127,7 +127,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 layout_theme = {"border_width": 2,
                 "margin": looks['border-margin'],
                 "border_focus": colors['power1'],
-                "border_normal": colors['power2']
+                "border_normal": colors['power2'],
                 }
 
 layouts = [
@@ -343,11 +343,18 @@ widgets_list = [
                        linewidth = 0,
                        padding = 6,
                        ),
+              widget.TextBox(foreground = colors["power1"],
+                text="calendar-alt",
+                font="Font Awesome 5 Free Solid"),
               widget.Clock(
                        foreground = colors["power1"],
                     #    background = colors["power2"],
                        format = "%A, %B %d - %H:%M "
                        ),
+              widget.QuickExit(default_text = 'power-off',
+                                font='Font Awesome 5 Free Solid', 
+                                fontsize=11, 
+                                foreground=colors['power2'])
               ]
 
 screen = Screen(
@@ -357,7 +364,7 @@ screen = Screen(
                     int(looks['panel-size']),
                     background=colors["bg"],
                     opacity = float(looks['panel-opacity']),
-                    margin = int(looks['border-margin']),
+                    margin = looks['border-margin'],
                 ),
             )
 
