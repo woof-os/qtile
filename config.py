@@ -4,6 +4,7 @@ import subprocess
 from typing import List, Text
 
 from libqtile import bar, layout, widget
+import libqtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -137,7 +138,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 
-layout_theme = {"border_width": 2,
+layout_theme = {"border_width": 0,
                 "margin": looks['border-margin'],
                 "border_focus": colors['power1'],
                 "border_normal": colors['power2'],
@@ -214,7 +215,7 @@ widgets_list = [
                        foreground = colors["power1"],
                     #    background = colors["power1"]
                        ),
-             widget.Sep(
+              widget.Sep(
                        linewidth = 0,
                        padding = 40,
                        ),
