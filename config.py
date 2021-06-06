@@ -28,10 +28,23 @@ colors = {
     "bg": special_clrs['background'],
     "fg": special_clrs["foreground"], 
     "current_screen_tab": clrs['color1'], 
-    "power1": clrs["color5"], 
+    "power1": clrs["color5"],
+    # "power1": clrs["color7"], #uncomment this lne only if ur wallpaper has issues with the colorscheme 
     "power2": clrs["color6"], 
     "active": clrs["color13"], 
     "inactive": clrs["color7"], 
+    "window_name": special_clrs["foreground"]
+}
+
+# uncomment for wallpapers with excessive usage of same colors or if panel is bad at visibility
+colors = {
+    "bg": clrs["color0"],
+    "fg": special_clrs["foreground"], 
+    "current_screen_tab": clrs['color11'], 
+    "power1": clrs["color8"],
+    "power2": clrs["color11"], 
+    "active": clrs["color7"], 
+    "inactive": clrs["color8"], 
     "window_name": special_clrs["foreground"]
 }
 
@@ -110,9 +123,9 @@ for i in groups:
 group_names = [("code", {'layout': 'monadtall'}),
                ("wifi", {'layout': 'monadtall'}),
                ("box", {'layout':'monadtall'}),
-               ("headset", {'layout': 'monadtall'}),
-               ("comment", {'layout': 'monadtall'}),
-               ("file-word", {'layout': 'monadtall'}),
+               ("headset", {'layout': 'max'}),
+               ("comment", {'layout': 'max'}),
+               ("book", {'layout': 'monadtall'}),
                ("gamepad", {'layout': 'max'}),
                ("tv", {'layout' : 'max'}),
                ("bone", {'layout': 'monadtall'})]
@@ -201,14 +214,7 @@ widgets_list = [
                        foreground = colors["power1"],
                     #    background = colors["power1"]
                        ),
-            #   widget.TextBox(
-            #       font= looks["caret_font"],
-            #       text= "caret-right",
-            #       fontsize= looks["caret_font_size"],
-            #       padding=0,
-            #       foreground=colors["power2"]
-            #   ),
-              widget.Sep(
+             widget.Sep(
                        linewidth = 0,
                        padding = 40,
                        ),
@@ -222,14 +228,7 @@ widgets_list = [
                        linewidth = 0,
                        padding = 6,
                        ),
-            #   widget.TextBox(
-            #            text = 'caret-left',
-            #            font=looks["caret_font"],
-            #            foreground = colors["power2"],
-            #            padding = 0,
-            #            fontsize = looks["caret_font_size"]
-            #            ),
-              widget.Systray(
+             widget.Systray(
                     #    background = colors["power2"],
                        foreground = colors["power2"],
                        padding = 10
@@ -238,13 +237,7 @@ widgets_list = [
                   linewidth=0,
                   padding = 12,
               ),
-            #   widget.TextBox(
-            #            text = 'grip-lines-vertical',
-            #            font = looks["caret_font"],
-            #            foreground = colors["fg"],
-            #            fontsize=20
-            #            ),
-              widget.Sep(
+             widget.Sep(
                   linewidth=0,
                   padding = 5,
               ),
@@ -252,7 +245,6 @@ widgets_list = [
                        text = "microchip",
                        font=looks["caret_font"],
                        foreground = colors["power1"],
-                    #    background = colors["power1"],
                        padding = 0,
                        fontsize = 11
                        ),
@@ -262,71 +254,37 @@ widgets_list = [
                        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('xfce4-terminal' + ' -e htop')},
                        padding = 5
                        ),
-            #   widget.TextBox(
-            #            text='caret-left',
-            #            font=looks["caret_font"],
-            #            background = colors["power1"],
-            #            foreground = colors["power2"],
-            #            padding = 0,
-            #            fontsize = looks["caret_font_size"]
-            #            ),
-            #   widget.TextBox(
-            #            text = '',
-            #            background = colors["power1"],
-            #            foreground = colors["power2"],
-            #            padding = 0,
-            #            fontsize = looks["caret_font_size"]
-            #            ),
-              widget.Sep(
+             widget.Sep(
                 linewidth = 0,
                 padding = 6,
                 ),
-              widget.TextBox(
-                foreground = colors["power2"],
-                text="signal",
-                font="Font Awesome 5 Free Solid"
-              ),
-              widget.Net(
-                       foreground = colors["power2"],
-                       format = '{down}',
-                       ),
-
-              widget.Sep(
+             widget.Sep(
                   linewidth = 0,
                   padding = 6,
               ),
               widget.TextBox(
                        text = "volume-off",
                        font = "Font Awesome 5 Free Solid",
-                       foreground = colors["power1"],
+                       foreground = colors["power2"],
                     #    background = colors["power2"],
                        fontsize = 14,
                        padding = 0
                        ),
               widget.Volume(
-                       foreground = colors["power1"],
+                       foreground = colors["power2"],
                     #    background = colors["power2"]
                        ),
-            #   widget.TextBox(
-            #            text='caret-left',
-            #            font=looks["caret_font"],
-            #         #    background = colors["power2"],
-            #            foreground = colors["power1"],
-            #            padding = 0,
-            #            padding_bottom = 100,
-            #            fontsize = looks["caret_font_size"]
-            #            ),
-              widget.Sep(
+             widget.Sep(
                 linewidth = 0,
                 padding = 6,
                 ),
               widget.TextBox(
-                foreground = colors["power2"],
+                foreground = colors["power1"],
                 text="th-large",
                 font="Font Awesome 5 Free Solid"
               ),
               widget.CurrentLayout(
-                       foreground = colors["power2"],
+                       foreground = colors["power1"],
                     #    background = colors["power1"],
                        padding = 5
                        ),
@@ -342,19 +300,18 @@ widgets_list = [
                        linewidth = 0,
                        padding = 6,
                        ),
-              widget.TextBox(foreground = colors["power1"],
+              widget.TextBox(foreground = colors["power2"],
                 text="calendar-alt",
                 font="Font Awesome 5 Free Solid"),
               widget.Clock(
-                       foreground = colors["power1"],
+                       foreground = colors["power2"],
                     #    background = colors["power2"],
                        format = "%A, %B %d - %H:%M "
-                       ),
-              widget.QuickExit(default_text = 'power-off',
-                                font='Font Awesome 5 Free Solid', 
-                                fontsize=11, 
-                                foreground=colors['power2'])
+                       )
               ]
+
+
+
 
 screen = Screen(
                 wallpaper=wallpaper,
@@ -366,7 +323,7 @@ screen = Screen(
                     margin = looks['border-margin'],
                 ),
             )
-
+        
 screens = []
 
 i = 0
