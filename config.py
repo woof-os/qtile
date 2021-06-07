@@ -138,39 +138,16 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 
-layout_theme = {"border_width": 0,
+layout_theme = {"border_width": 1,
                 "margin": looks['border-margin'],
-                "border_focus": colors['power1'],
-                "border_normal": colors['power2'],
+                "border_focus": colors['power2'],
+                "border_normal": colors['power1'],
                 }
 
 layouts = [
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    layout.Stack(num_stacks=2),
-    layout.RatioTile(**layout_theme),
-    layout.TreeTab(
-         font = "Ubuntu",
-         fontsize = 10,
-         sections = ["FIRST", "SECOND", "THIRD", "FOURTH"],
-         section_fontsize = 10,
-         border_width = 2,
-         bg_color = "1c1f24",
-         active_bg = "c678dd",
-         active_fg = "000000",
-         inactive_bg = "a9a1e1",
-         inactive_fg = "1c1f24",
-         padding_left = 0,
-         padding_x = 0,
-         padding_y = 5,
-         section_top = 10,
-         section_bottom = 20,
-         level_shift = 8,
-         vspace = 3,
-         panel_width = 200
-         ),
     layout.Floating(**layout_theme)
-
 ]
 
 widget_defaults = dict(
