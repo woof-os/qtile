@@ -10,7 +10,6 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import qtile
 from libqtile import hook
-from pywal import wallpaper
 
 with open("{}/.config/qtile/config/settings.json".format(os.getenv("HOME"))) as file:
     settings = json.load(file)
@@ -23,7 +22,7 @@ with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as fi
 
 special_clrs = colors_json['special']
 clrs = colors_json['colors']
-wallpaper = colors_json["wallpaper"]
+wallpaper = looks["wallpaper"]
 
 colors = {
     "bg": special_clrs['background'],
