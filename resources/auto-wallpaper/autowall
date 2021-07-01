@@ -1,0 +1,121 @@
+#!/usr/bin/python3
+
+import os
+import time as t
+import json
+from datetime import datetime, time
+
+try:
+    import schedule
+except:
+    os.system("pip3 install schedule")
+    import schedule
+
+### COLORS FUNCTIONS ###
+def needs_dark(hex_code: str):
+    h = hex_code.lstrip("#")
+    rgb = tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
+
+    red = rgb[0]
+    green = rgb[1]
+    blue = rgb[2]
+
+    return True if (red * 0.299 + green * 0.587 + blue * 0.114) > 186 else False
+
+
+def get_fg(needs_dark: bool, clrs: dict):
+    return(clrs["white"] if needs_dark else clrs["black"])
+
+def get_var_fg(is_dark: bool, dark: str, light: str):
+    return(light if is_dark else dark)
+
+### VARIABLES THAT YOU HAVE TO CHANGE ###
+
+home = os.getenv("HOME")                                                            # the dir where .config is placed
+
+day_wall = f"{home}/.config/qtile/resources/auto-wallpaper/day.jpg"                 # wallpaper to use at day time
+night_wall = f"{home}/.config/qtile/resources/auto-wallpaper/night.jpg"             # wallpaper to use at night time
+
+# not really needed
+# qtile_script = f"{home}/.config/qtile/resources/auto-wallpaper/use-qtile-shell.sh"  # location of qtile shell script 
+
+### TODO: There are some "not really needed" variables here which exists right now because there is a plan to implement seperate dark and light themes (couldn't find a good one which goes well with onedark)
+
+day_theme = "base16-onedark"                                                        # wal theme to use at day
+night_theme = "base16-onedark"                                                      # wal theme to use at night
+
+onedark = {
+            "black":    "#282C34",
+            "red":      "#E06C75",
+            "dark-red": "#BE5046",
+            "green":    "#98C379",
+            "yellow":   "#E5C07B",
+            "blue":     "#61AFEF",
+            "purple":   "#C678DD",
+            "cyan":     "#56B6C2",
+            "white":    "#ABB2BF"
+        }
+
+dark_special = {
+        "bg":   		 onedark["black"],
+        "fg":	   		 onedark["white"],
+        "current_screen_tab": 	 onedark["purple"],
+        "power1":		 onedark["purple"],
+        "power1fg":		 get_fg(needs_dark(onedark["purple"]), onedark),
+        "power2":		 onedark["blue"],
+        "power2fg":		 get_fg(needs_dark(onedark["blue"]), onedark),
+        "active":	         onedark["green"],
+        "inactive":		 onedark["white"],
+        "window_name":  	 onedark["purple"],
+        "time":                  onedark["cyan"],
+        "timefg":                onedark["black"]
+        }
+
+def apply_qtile(scheme):
+    with open(home + "/.config/qtile/config/colors.json", "w") as file:
+        json.dump(scheme, file)
+
+apply_qtile(dark_special)
+
+### REST OF THE SCRIPT ###
+
+now = datetime.now()
+now_time = now.time()
+
+is_night = time(6, 35) <= now_time >= time(18, 35)
+
+with open("{}/.config/qtile/config/settings.json".format(home)) as file:
+    conf = json.load(file)
+
+def change_setting(main: str, prop: str, val):
+    try:
+        val = float(val)
+    except:
+        val = str(val)
+    conf[main][prop] = val 
+    with open("{}/.config/qtile/config/settings.json".format(home), 'w') as file:
+        json.dump(conf, file)
+
+def refresh():
+    os.system(qtile_script)
+
+def do_night():
+    print("switching to night wallpaper")
+    os.system(f"wal -i {night_wall} -s")
+    os.system(f"wal --theme {night_theme}")
+    change_setting("looks", "wallpaper", night_wall)
+
+def do_day():
+    print("switching to day wallpaper")
+    os.system(f"wal -i {day_wall} -s")
+    os.system(f"wal --theme {day_theme}")
+    change_setting("looks", "wallpaper", day_wall)
+
+do_night() if is_night else do_day()
+
+schedule.every().day.at("06:35").do(do_day)
+schedule.every().day.at("18:35").do(do_night)
+
+while True:
+    schedule.run_pending()
+    t.sleep(1)

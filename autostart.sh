@@ -1,5 +1,6 @@
 #!/bin/bash
 picom &
 # protonvpn-cli connect -f -p tcp &
+autowall &
 nm-applet &
-python3 ~/.config/qtile/config/get_clrs.py &
+indicator-cpufreq &
