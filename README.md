@@ -1,8 +1,15 @@
 # Woof qtile config
 
 Yea, yet another qtile user making a dumb config.
-I won't provide the wallpaper tho
-and the screenshot, since its... dynamic!
+
+**Screenshot**
+<img src='for-github/screenshot.png'>
+
+**Day Wallpaper**
+<img src='resources/auto-wallpaper/day.jpg'>
+
+**Night Wallpaper**
+<img src='resources/auto-wallpaper/night.jpg'>
 
 ## Please follow the steps below before messaging me and being like: I can't install this dum thing
 
