@@ -111,6 +111,7 @@ keys = [
     Key(
         [mod], "v", lazy.spawn("rofi -show window"), desc="Show active windows in rofi"
     ),
+    Key([mod], "c", lazy.spawn("code"), desc="Open vscode"),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -172,7 +173,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="JetBrains Mono",
+    font="Fira Code",
     fontsize=11,
     padding=3,
 )
@@ -236,7 +237,7 @@ widgets_list: list = [
         #   background = colors["power1"]
     ),
     #      widget.WindowName(
-    #         font="JetBrains Mono Bold", foreground=colors["window_name"], padding=0
+    #         font="Fira Code Bold", foreground=colors["window_name"], padding=0
     #     ),
     widget.Spacer(),
     # widget.TextBox(
@@ -248,7 +249,7 @@ widgets_list: list = [
     #     padding=0,
     # ),
     widget.Clock(
-        font="Jetbrains Mono Bold",
+        font="Fira Code Bold",
         foreground=colors["timefg"],
         background=colors["time"],
         format=" %A, %H:%M  ",
@@ -268,6 +269,14 @@ widgets_list: list = [
         padding=12,
     ),
     widget.TextBox(
+        text="caret-left",
+        font=looks["caret_font"],
+        fontsize=looks["caret_font_size"],
+        background=colors["bg"],
+        foreground=colors["power1"],
+        padding=0,
+    ),
+    widget.TextBox(
         text=" volume-off",
         font="Font Awesome 5 Free Solid",
         foreground=colors["power1fg"],
@@ -277,6 +286,14 @@ widgets_list: list = [
     ),
     widget.Volume(foreground=colors["power1fg"], background=colors["power1"]),
     widget.TextBox(
+        text="caret-left",
+        font=looks["caret_font"],
+        fontsize=looks["caret_font_size"],
+        background=colors["power1"],
+        foreground=colors["power2"],
+        padding=0,
+    ),
+    widget.TextBox(
         foreground=colors["power2fg"],
         background=colors["power2"],
         text=" th-large",
@@ -284,6 +301,14 @@ widgets_list: list = [
     ),
     widget.CurrentLayout(
         foreground=colors["power2fg"], background=colors["power2"], padding=5
+    ),
+    widget.TextBox(
+        text="caret-left",
+        font=looks["caret_font"],
+        fontsize=looks["caret_font_size"],
+        background=colors["power2"],
+        foreground=colors["power1"],
+        padding=0,
     ),
     widget.TextBox(
         foreground=colors["power1fg"],
@@ -296,7 +321,14 @@ widgets_list: list = [
         background=colors["power1"],
         format=" %B %d ",
     ),
-    widget.Sep(linewidth=0, padding=8, background=colors["power2"]),
+    widget.TextBox(
+        text="caret-left",
+        font=looks["caret_font"],
+        fontsize=looks["caret_font_size"],
+        background=colors["power1"],
+        foreground=colors["power2"],
+        padding=0,
+    ),
     widget.WidgetBox(
         widgets=power_widgets,
         background=colors["power2"],
