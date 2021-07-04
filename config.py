@@ -329,6 +329,7 @@ widgets_list: list = [
     #     foreground=colors["power2"],
     #     padding=0,
     # ),
+    widget.Sep(linewidth=0, padding=8, background=colors["power2"]),
     widget.WidgetBox(
         widgets=power_widgets,
         background=colors["power2"],
