@@ -1,13 +1,10 @@
 import os
 import json
 import subprocess
-from typing import List, Text
 
 from libqtile import bar, layout, widget
-import libqtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 from libqtile import qtile
 from libqtile import hook
 
@@ -107,7 +104,7 @@ keys = [
         [mod],
         "r",
         lazy.spawn("rofi -show drun"),
-        desc="Spawn a command using a prompt widget",
+        desc="Spawn a command using rofi",
     ),
     Key([mod], "t", lazy.spawncmd(), desc="Spawn a command using a prompt"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Open firefox"),
@@ -242,28 +239,28 @@ widgets_list: list = [
     #         font="JetBrains Mono Bold", foreground=colors["window_name"], padding=0
     #     ),
     widget.Spacer(),
-    widget.TextBox(
-        text="caret-right",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["time"],
-        foreground=colors["bg"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-right",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["time"],
+    #     foreground=colors["bg"],
+    #     padding=0,
+    # ),
     widget.Clock(
         font="Jetbrains Mono Bold",
         foreground=colors["timefg"],
         background=colors["time"],
         format=" %A, %H:%M  ",
     ),
-    widget.TextBox(
-        text="caret-left",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["time"],
-        foreground=colors["bg"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-left",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["time"],
+    #     foreground=colors["bg"],
+    #     padding=0,
+    # ),
     widget.Spacer(),
     widget.Systray(foreground=colors["power2"], padding=10),
     widget.Sep(
