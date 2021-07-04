@@ -268,14 +268,14 @@ widgets_list: list = [
         linewidth=0,
         padding=12,
     ),
-    widget.TextBox(
-        text="caret-left",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["bg"],
-        foreground=colors["power1"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-left",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["bg"],
+    #     foreground=colors["power1"],
+    #     padding=0,
+    # ),
     widget.TextBox(
         text=" volume-off",
         font="Font Awesome 5 Free Solid",
@@ -285,14 +285,14 @@ widgets_list: list = [
         padding=0,
     ),
     widget.Volume(foreground=colors["power1fg"], background=colors["power1"]),
-    widget.TextBox(
-        text="caret-left",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["power1"],
-        foreground=colors["power2"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-left",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["power1"],
+    #     foreground=colors["power2"],
+    #     padding=0,
+    # ),
     widget.TextBox(
         foreground=colors["power2fg"],
         background=colors["power2"],
@@ -302,14 +302,14 @@ widgets_list: list = [
     widget.CurrentLayout(
         foreground=colors["power2fg"], background=colors["power2"], padding=5
     ),
-    widget.TextBox(
-        text="caret-left",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["power2"],
-        foreground=colors["power1"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-left",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["power2"],
+    #     foreground=colors["power1"],
+    #     padding=0,
+    # ),
     widget.TextBox(
         foreground=colors["power1fg"],
         background=colors["power1"],
@@ -321,14 +321,14 @@ widgets_list: list = [
         background=colors["power1"],
         format=" %B %d ",
     ),
-    widget.TextBox(
-        text="caret-left",
-        font=looks["caret_font"],
-        fontsize=looks["caret_font_size"],
-        background=colors["power1"],
-        foreground=colors["power2"],
-        padding=0,
-    ),
+    # widget.TextBox(
+    #     text="caret-left",
+    #     font=looks["caret_font"],
+    #     fontsize=looks["caret_font_size"],
+    #     background=colors["power1"],
+    #     foreground=colors["power2"],
+    #     padding=0,
+    # ),
     widget.WidgetBox(
         widgets=power_widgets,
         background=colors["power2"],
