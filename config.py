@@ -158,7 +158,6 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
-
 layout_theme = {
     "border_width": 2,
     "margin": looks["border-margin"],
@@ -180,20 +179,20 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 power_widgets: list = [
-    widget.Sep(linewidth=0, padding=8, background=colors["power2"]),
+    widget.Sep(linewidth=0, padding=8),
     widget.TextBox(
         text="Shutdown",
-        background=colors["power2"],
-        foreground=colors["power2fg"],
+#        background=colors["power2"],
+        foreground=colors["power2"],
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("shutdown now")},
     ),
     widget.TextBox(
-        text="|", background=colors["power2"], foreground=colors["power2fg"]
+        text="|", background=colors["bg"], foreground=colors["power2"]
     ),
     widget.TextBox(
         text="Reboot",
-        background=colors["power2"],
-        foreground=colors["power2fg"],
+        background=colors["bg"],
+        foreground=colors["power2"],
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("reboot")},
     ),
 ]
@@ -250,8 +249,8 @@ widgets_list: list = [
     # ),
     widget.Clock(
         font="Fira Code Bold",
-        foreground=colors["timefg"],
-        background=colors["time"],
+        foreground=colors["time"],
+        background=colors["bg"],
         format=" %A, %H:%M  ",
     ),
     # widget.TextBox(
@@ -263,7 +262,7 @@ widgets_list: list = [
     #     padding=0,
     # ),
     widget.Spacer(),
-    widget.Systray(foreground=colors["power2"], padding=10),
+#    widget.Systray(foreground=colors["power2"], padding=10),
     widget.Sep(
         linewidth=0,
         padding=12,
@@ -276,15 +275,30 @@ widgets_list: list = [
     #     foreground=colors["power1"],
     #     padding=0,
     # ),
-    widget.TextBox(
+     widget.TextBox(
+        text=" fire",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["power1"],
+        background=colors["bg"],
+        fontsize=14,
+        padding=0,
+        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('flameshot gui')}
+    ),
+     widget.Sep(
+        linewidth=0,
+        padding=6,
+    ),    widget.Sep(
+        padding=6,
+    ),
+  widget.TextBox(
         text=" volume-off",
         font="Font Awesome 5 Free Solid",
-        foreground=colors["power1fg"],
-        background=colors["power1"],
+        foreground=colors["power1"],
+        background=colors["bg"],
         fontsize=14,
         padding=0,
     ),
-    widget.Volume(foreground=colors["power1fg"], background=colors["power1"]),
+    widget.Volume(foreground=colors["power1"], background=colors["bg"]),
     # widget.TextBox(
     #     text="caret-left",
     #     font=looks["caret_font"],
@@ -294,13 +308,15 @@ widgets_list: list = [
     #     padding=0,
     # ),
     widget.TextBox(
-        foreground=colors["power2fg"],
-        background=colors["power2"],
+        foreground=colors["power2"],
+#        background=colors["power2"],
         text=" th-large",
         font="Font Awesome 5 Free Solid",
     ),
     widget.CurrentLayout(
-        foreground=colors["power2fg"], background=colors["power2"], padding=5
+        foreground=colors["power2"], 
+#       background=colors["power2"],
+        padding=5
     ),
     # widget.TextBox(
     #     text="caret-left",
@@ -311,14 +327,14 @@ widgets_list: list = [
     #     padding=0,
     # ),
     widget.TextBox(
-        foreground=colors["power1fg"],
-        background=colors["power1"],
+        foreground=colors["power1"],
+#        background=colors["power1"],
         text=" calendar-alt",
         font="Font Awesome 5 Free Solid",
     ),
     widget.Clock(
-        foreground=colors["power1fg"],
-        background=colors["power1"],
+        foreground=colors["power1"],
+#        background=colors["power1"],
         format=" %B %d ",
     ),
     # widget.TextBox(
@@ -329,16 +345,16 @@ widgets_list: list = [
     #     foreground=colors["power2"],
     #     padding=0,
     # ),
-    widget.Sep(linewidth=0, padding=8, background=colors["power2"]),
+    widget.Sep(linewidth=0, padding=8),
     widget.WidgetBox(
         widgets=power_widgets,
-        background=colors["power2"],
-        foreground=colors["power2fg"],
+#        background=colors["power2"],
+        foreground=colors["power2"],
         font=looks["caret_font"],
         text_closed="power-off",
         text_open="times",
     ),
-    widget.Sep(linewidth=0, padding=8, background=colors["power2"]),
+    widget.Sep(linewidth=0, padding=12),
 ]
 
 bar_margin = looks["border-margin"]
