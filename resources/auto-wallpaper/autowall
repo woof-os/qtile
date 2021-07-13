@@ -35,16 +35,16 @@ def get_var_fg(is_dark: bool, dark: str, light: str):
 
 home = os.getenv("HOME")  # the dir where .config is placed
 
-day_wall = f"{home}/.config/qtile/resources/auto-wallpaper/day.jpg"  # wallpaper to use at day time
-night_wall = f"{home}/.config/qtile/resources/auto-wallpaper/night.jpg"  # wallpaper to use at night time
+day_wall = f"{home}/.config/qtile/resources/auto-wallpaper/day.png"  # wallpaper to use at day time
+night_wall = f"{home}/.config/qtile/resources/auto-wallpaper/night.png"  # wallpaper to use at night time
 
 # not really needed
 # qtile_script = f"{home}/.config/qtile/resources/auto-wallpaper/use-qtile-shell.sh"  # location of qtile shell script
 
 ### TODO: There are some "not really needed" variables here which exists right now because there is a plan to implement seperate dark and light themes (couldn't find a good one which goes well with onedark)
 
-day_theme = "base16-onedark"  # wal theme to use at day
-night_theme = "base16-onedark"  # wal theme to use at night
+day_theme = "base16-nord"  # wal theme to use at day
+night_theme = "base16-nord"  # wal theme to use at night
 
 onedark = {
     "black": "#282C34",
@@ -56,6 +56,19 @@ onedark = {
     "purple": "#C678DD",
     "cyan": "#56B6C2",
     "white": "#ABB2BF",
+}
+
+nord = {
+    "black": "#2e3440",
+    "red": "#b48ead",
+    "dark-red": "#bf616a",
+    "green": "#a3be8c",
+    "yellow": "#ebcb8b",
+    "blue": "#88c0d0",
+    "orange": "#d08770",
+    "cyan": "#8fbcbb",
+    "white": "#eceff4"
+    
 }
 
 dark_special = {
@@ -73,13 +86,27 @@ dark_special = {
     "timefg": onedark["black"],
 }
 
+nord_dark_special = {
+    "bg": nord["black"],
+    "fg": nord["white"],
+    "current_screen_tab": nord["orange"],
+    "power1": nord["red"],
+    "power1fg": get_fg(needs_dark(nord["red"]), nord),
+    "power2": nord["blue"],
+    "power2fg": get_fg(needs_dark(nord["blue"]), nord),
+    "active": nord["green"],
+    "inactive": nord["white"],
+    "window_name": nord["orange"],
+    "time": nord["cyan"],
+    "timefg": nord["black"],
+}
 
 def apply_qtile(scheme):
-    with open(home + "/.config/qtile/config/colors.json", "w") as file:
+    with open(str(home) + "/.config/qtile/config/colors.json", "w") as file:
         json.dump(scheme, file)
 
 
-apply_qtile(dark_special)
+apply_qtile(nord_dark_special)
 
 ### REST OF THE SCRIPT ###
 
