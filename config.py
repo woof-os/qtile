@@ -54,6 +54,7 @@ wallpaper = looks["wallpaper"]
 
 mod = "mod4"
 terminal = "alacritty"
+browser = "google-chrome"
 
 keys = [
     # Switch between windows
@@ -107,7 +108,7 @@ keys = [
         desc="Spawn a command using rofi",
     ),
     Key([mod], "t", lazy.spawncmd(), desc="Spawn a command using a prompt"),
-    Key([mod], "b", lazy.spawn("firefox"), desc="Open firefox"),
+    Key([mod], "b", lazy.spawn(browser), desc="Launch web browser"),
     Key(
         [mod], "v", lazy.spawn("rofi -show window"), desc="Show active windows in rofi"
     ),
@@ -161,7 +162,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {
     "border_width": 2,
-    "margin":  1,
+    "margin":  8,
     "border_focus": colors["power1"],
     "border_normal": colors["power2"],
 }
@@ -230,6 +231,7 @@ widgets_list: list = [
         foreground=colors["fg"],
         #   background = colors["power2"]
     ),
+    widget.Sep(linewidth=0, padding=8),
     widget.Prompt(
         foreground=colors["power1"],
         #   background = colors["power1"]
@@ -261,11 +263,10 @@ widgets_list: list = [
     #     padding=0,
     # ),
     widget.Spacer(),
-    widget.Sep(linewidth=1, padding=8),
     widget.Systray(foreground=colors["power2"], padding=10),
     widget.Sep(
         linewidth=0,
-        padding=12,
+        padding=6,
     ),
     # widget.TextBox(
     #     text="caret-left",
@@ -284,9 +285,6 @@ widgets_list: list = [
     #        padding=0,
     #        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('flameshot gui')}
     #    ),
-    widget.Sep(
-        padding=6,
-    ),
     widget.Sep(
         linewidth=0,
         padding=6,
@@ -327,8 +325,7 @@ widgets_list: list = [
     #     foreground=colors["power2"],
     #     padding=0,
     # ),
-    widget.Sep(linewidth=1, padding=8),
-    widget.Sep(linewidth=0, padding=8),
+    widget.Sep(linewidth=0, padding=6),
     widget.WidgetBox(
         widgets=power_widgets,
         #        background=colors["power2"],
