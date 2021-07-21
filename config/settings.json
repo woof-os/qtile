@@ -1,1 +1,14 @@
-{"looks": {"wallpaper": "/home/acutewoof/.config/qtile/config/1.jpg", "caret_font_size": 49.0, "caret_font": "Font Awesome 5 Free Solid", "border-margin": 3.0, "border-width": 6.0, "panel-opacity": 1, "panel-size": 24, "wallpaprt": "", "walpape": ""}, "display": {"screen-count": 1}}
+{
+  "looks": {
+    "wallpaper": "/home/acutewoof/.config/qtile/config/1.jpg",
+    "caret_font_size": 49,
+    "caret_font": "Font Awesome 5 Free Solid",
+    "border-margin": 3,
+    "border-width": 6,
+    "panel-opacity": 1,
+    "panel-size": 24
+  },
+  "display": {
+    "screen-count": 1
+  }
+}

@@ -1,1 +1,14 @@
-{"bg": "#282C34", "fg": "#ABB2BF", "current_screen_tab": "#C678DD", "power1": "#C678DD", "power1fg": "#282C34", "power2": "#61AFEF", "power2fg": "#282C34", "active": "#98C379", "inactive": "#ABB2BF", "window_name": "#C678DD", "time": "#56B6C2", "timefg": "#282C34"}
+{
+  "bg": "#282C34",
+  "fg": "#ABB2BF",
+  "current_screen_tab": "#C678DD",
+  "power1": "#C678DD",
+  "power1fg": "#282C34",
+  "power2": "#61AFEF",
+  "power2fg": "#282C34",
+  "active": "#98C379",
+  "inactive": "#ABB2BF",
+  "window_name": "#C678DD",
+  "time": "#56B6C2",
+  "timefg": "#282C34"
+}
