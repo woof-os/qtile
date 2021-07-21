@@ -146,7 +146,7 @@ group_names = [
     ("code", {"layout": "monadtall"}),
     ("wifi", {"layout": "monadtall"}),
     ("box", {"layout": "monadtall"}),
-    ("headset", {"layout": "max"}),
+    ("book", {"layout": "max"}),
     ("comment", {"layout": "max"}),
     ("gamepad", {"layout": "max"}),
     ("tv", {"layout": "max"}),
@@ -311,7 +311,8 @@ widgets_list: list = [
         #        background=colors["power1"],
         text=" calendar-alt",
         font="Font Awesome 5 Free Solid",
-    ),
+        mouse_callbacks = {"Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')}
+        ),
     widget.Clock(
         foreground=colors["power1"],
         #        background=colors["power1"],
@@ -410,4 +411,4 @@ def start_once():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = "qtile"
