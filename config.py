@@ -43,10 +43,10 @@ wallpaper = looks["wallpaper"]
 #     "bg": clrs["color0"],
 #     "fg": special_clrs["foreground"],
 #     "current_screen_tab": clrs["color11"],
-#     "power1fg": get_fg(needs_dark(clrs["color6"])),
-#     "power2fg": get_fg(needs_dark(clrs["color9"])),
-#     "power1": clrs["color6"],
-#     "power2": clrs["color9"],
+#     "color1fg": get_fg(needs_dark(clrs["color6"])),
+#     "color2fg": get_fg(needs_dark(clrs["color9"])),
+#     "color1": clrs["color6"],
+#     "color2": clrs["color9"],
 #     "active": clrs["color7"],
 #     "inactive": clrs["color8"],
 #     "window_name": special_clrs["foreground"],
@@ -98,6 +98,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -162,9 +163,11 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {
     "border_width": 2,
-    "margin":  8,
-    "border_focus": colors["power1"],
-    "border_normal": colors["power2"],
+    "margin": 8,
+#     "border_focus": colors["color1"],
+#     "border_normal": colors["color2"],
+    "border_focus": colors["border_focus"],
+    "border_normal": colors["border_normal"],
 }
 
 layouts = [
@@ -174,172 +177,142 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Fira Code",
+    font="Jetbrains Mono",
     fontsize=11,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
 power_widgets: list = [
-    widget.Sep(linewidth=0, padding=8),
+    widget.Sep(
+        linewidth=0,
+        padding=8,
+        background=colors["color2"],
+        foreground=colors["color2fg"],
+    ),
     widget.TextBox(
         text="Shutdown",
-        #        background=colors["power2"],
-        foreground=colors["power2"],
+        background=colors["color2"],
+        foreground=colors["color2fg"],
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("shutdown now")},
     ),
-    widget.TextBox(text="|", background=colors["bg"], foreground=colors["power2"]),
+    widget.TextBox(
+        text="|", background=colors["color2"], foreground=colors["color2fg"]
+    ),
     widget.TextBox(
         text="Reboot",
-        background=colors["bg"],
-        foreground=colors["power2"],
+        background=colors["color2"],
+        foreground=colors["color2fg"],
         mouse_callbacks={"Button1": lambda: qtile.cmd_spawn("reboot")},
     ),
 ]
 
 widgets_list: list = [
+    ### Groups ###
     widget.Sep(
-        linewidth=0,
+       linewidth=0,
         padding=6,
+        background = colors["groups_bg"]
+
     ),
-    # widget.TextBox(
-    #     text="circle",
-    #     font=looks["caret_font"],
-    #     fontsize=12,
-    #     foreground=colors["power1"],
-    #     mouse_callbacks={
-    #         "Button1": lambda: qtile.cmd_spawn("rofi -show run"),
-    #         "Button3": lambda: qtile.cmd_spawn("rofi -show window")
-    #     },
-    #     padding=6,
-    #     ),
-    # widget.Sep(padding=6),
     widget.GroupBox(
         font=looks["caret_font"],
-        # padding_y=5,
-        # padding_x=3,
         borderwidth=3,
         active=colors["active"],
         inactive=colors["inactive"],
         rounded=False,
         highlight_method="line",
-        highlight_color=colors["bg"],
+        highlight_color=colors["groups_bg"],
         this_current_screen_border=colors["current_screen_tab"],
-        this_screen_border=colors["power1"],
-        other_current_screen_border=colors["window_name"],
+        this_screen_border=colors["color1"],
         other_screen_border=colors["bg"],
         foreground=colors["fg"],
-        #   background = colors["power2"]
+        background = colors["groups_bg"]
     ),
-    widget.Sep(linewidth=0, padding=8),
+    widget.Sep(padding=6, linewidth=0),
     widget.Prompt(
-        foreground=colors["power1"],
-        #   background = colors["power1"]
+        foreground=colors["color1"],
+        #   background = colors["color1"]
     ),
-    #      widget.WindowName(
-    #         font="Fira Code Bold", foreground=colors["window_name"], padding=0
-    #     ),
+    widget.Sep(padding=6, linewidth=0),
+    
     widget.Spacer(),
-    # widget.TextBox(
-    #     text="caret-right",
-    #     font=looks["caret_font"],
-    #     fontsize=looks["caret_font_size"],
-    #     background=colors["time"],
-    #     foreground=colors["bg"],
-    #     padding=0,
-    # ),
+
+    ### Clock ###
     widget.Clock(
-        font="Fira Code Bold",
-        foreground=colors["time"],
-        background=colors["bg"],
-        format=" %A, %H:%M  ",
+        font="Jetbrains Mono Bold",
+        foreground=colors["timefg"],
+        background=colors["time"],
+        format=" %A, %H:%M ",
     ),
-    # widget.TextBox(
-    #     text="caret-left",
-    #     font=looks["caret_font"],
-    #     fontsize=looks["caret_font_size"],
-    #     background=colors["time"],
-    #     foreground=colors["bg"],
-    #     padding=0,
-    # ),
+    
     widget.Spacer(),
-    widget.Systray(foreground=colors["power2"], padding=10),
+    
+    ### Systray ###
+    widget.Sep(
+        linewidth=0,
+        padding=3,
+    ),
+    widget.Sep(padding=2, linewidth=0),
+    widget.Systray(foreground=colors["color2"], background=colors["bg"],padding=10),
     widget.Sep(
         linewidth=0,
         padding=6,
     ),
-    # widget.TextBox(
-    #     text="caret-left",
-    #     font=looks["caret_font"],
-    #     fontsize=looks["caret_font_size"],
-    #     background=colors["bg"],
-    #     foreground=colors["power1"],
-    #     padding=0,
-    # ),
-    #     widget.TextBox(
-    #        text=" fire",
-    #        font="Font Awesome 5 Free Solid",
-    #        foreground=colors["power1"],
-    #        background=colors["bg"],
-    #        fontsize=14,
-    #        padding=0,
-    #        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('flameshot gui')}
-    #    ),
-    widget.Sep(
-        linewidth=0,
-        padding=6,
-    ),
+    
+    ### Volume ###
+    widget.Sep(padding=12, linewidth=0, background=colors["color3"]),
     widget.TextBox(
-        text=" volume-off",
+        text="volume-off",
         font="Font Awesome 5 Free Solid",
-        foreground=colors["power2"],
-        background=colors["bg"],
+        foreground=colors["color3fg"],
+        background=colors["color3"],
         fontsize=14,
         padding=0,
     ),
-    widget.Volume(foreground=colors["power2"], background=colors["bg"]),
-    # widget.TextBox(
-    #     text="caret-left",
-    #     font=looks["caret_font"],
-    #     fontsize=looks["caret_font_size"],
-    #     background=colors["power2"],
-    #     foreground=colors["power1"],
-    #     padding=0,
-    # ),
+    widget.Volume(foreground=colors["color3fg"], background=colors["color3"]),
+    widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
+
+    ### Calendar ###
+    widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     widget.TextBox(
-        foreground=colors["power1"],
-        #        background=colors["power1"],
+        foreground=colors["color1fg"],
+        background=colors["color1"],
         text=" calendar-alt",
         font="Font Awesome 5 Free Solid",
-        mouse_callbacks = {"Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')}
-        ),
-    widget.Clock(
-        foreground=colors["power1"],
-        #        background=colors["power1"],
-        format="%B %d ",
+        mouse_callbacks={
+            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
+        },
     ),
-    # widget.TextBox(
-    #     text="caret-left",
-    #     font=looks["caret_font"],
-    #     fontsize=looks["caret_font_size"],
-    #     background=colors["power1"],
-    #     foreground=colors["power2"],
-    #     padding=0,
-    # ),
-    widget.Sep(linewidth=0, padding=6),
+    widget.Clock(
+        foreground=colors["color1fg"],
+        background=colors["color1"],
+        format="%B %d ",
+        mouse_callbacks={
+            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
+        },
+    ),
+
+    ### Power Buttons ###
+    widget.Sep(padding=9, linewidth=0, background=colors["color2"]),
     widget.WidgetBox(
         widgets=power_widgets,
-        #        background=colors["power2"],
-        foreground=colors["power2"],
+        background=colors["color2"],
+        foreground=colors["color2fg"],
         font=looks["caret_font"],
         text_closed="power-off",
         text_open="times",
     ),
-    widget.Sep(linewidth=0, padding=12),
+    widget.Sep(
+        linewidth=0,
+        padding=8,
+        background=colors["color2"],
+        foreground=colors["color2fg"],
+    ),
 ]
 
-bar_margin = looks["border-margin"]
-bar_margin = 0
+# bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
+bar_margin = 2
 
 screen = Screen(
     wallpaper=wallpaper,
@@ -353,12 +326,7 @@ screen = Screen(
     ),
 )
 
-screens = []
-
-i = 0
-
-for i in range(display["screen-count"]):
-    screens.append(screen)
+screens = [screen]
 
 # Drag floating layouts.
 mouse = [
@@ -391,10 +359,9 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="plank"),  # plank
     ]
 )
-auto_fullscreen = True
-focus_on_window_activation = "smart"
 
 
 @hook.subscribe.startup_once
@@ -403,12 +370,7 @@ def start_once():
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "WoofTile"
+bauto_fullscreen = True
+focus_on_window_activation = "focus"
+ring_front_click = True
+wmname = "LG3D"
