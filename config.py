@@ -312,7 +312,7 @@ widgets_list: list = [
 ]
 
 # bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
-bar_margin = 2
+bar_margin = 0
 
 screen = Screen(
     wallpaper=wallpaper,
