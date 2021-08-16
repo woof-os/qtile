@@ -99,7 +99,6 @@ keys = [
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key(
@@ -162,7 +161,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 layout_theme = {
-    "border_width": 2,
+    "border_width": 1,
     "margin": 8,
 #     "border_focus": colors["color1"],
 #     "border_normal": colors["color2"],
@@ -231,34 +230,24 @@ widgets_list: list = [
     ),
     widget.Sep(padding=6, linewidth=0),
     widget.Prompt(
-        foreground=colors["color1"],
+        foreground=colors["color1fg"],
         #   background = colors["color1"]
     ),
     widget.Sep(padding=6, linewidth=0),
     
     widget.Spacer(),
-
-    ### Clock ###
-    widget.Clock(
-        font="Jetbrains Mono Bold",
-        foreground=colors["timefg"],
-        background=colors["time"],
-        format=" %A, %H:%M ",
-    ),
-    
-    widget.Spacer(),
     
     ### Systray ###
-    widget.Sep(
-        linewidth=0,
-        padding=3,
-    ),
-    widget.Sep(padding=2, linewidth=0),
-    widget.Systray(foreground=colors["color2"], background=colors["bg"],padding=10),
-    widget.Sep(
-        linewidth=0,
-        padding=6,
-    ),
+#    widget.Sep(
+#        linewidth=0,
+#        padding=3,
+#    ),
+#    widget.Sep(padding=2, linewidth=0),
+#    widget.Systray(background=colors["bg"],padding=10),
+#    widget.Sep(
+#        linewidth=0,
+#        padding=6,
+#    ),
     
     ### Volume ###
     widget.Sep(padding=12, linewidth=0, background=colors["color3"]),
@@ -273,7 +262,7 @@ widgets_list: list = [
     widget.Volume(foreground=colors["color3fg"], background=colors["color3"]),
     widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
 
-    ### Calendar ###
+    ### Clock ###
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     widget.TextBox(
         foreground=colors["color1fg"],
@@ -287,11 +276,13 @@ widgets_list: list = [
     widget.Clock(
         foreground=colors["color1fg"],
         background=colors["color1"],
-        format="%B %d ",
+        # format="%a, %b %d - %H:%M",
+        format="%H:%M",
         mouse_callbacks={
             "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
         },
     ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
 
     ### Power Buttons ###
     widget.Sep(padding=9, linewidth=0, background=colors["color2"]),
@@ -369,6 +360,9 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+@hook.subscribe.startup
+def runner():
+    subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
 
 bauto_fullscreen = True
 focus_on_window_activation = "focus"
