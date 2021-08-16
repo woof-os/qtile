@@ -107,6 +107,11 @@ keys = [
         lazy.spawn("rofi -show drun"),
         desc="Spawn a command using rofi",
     ),
+    Key(
+        [mod],
+        lazy.spawn("rofi -show drun"),
+        desc="Spawn a command using rofi",
+    ),
     Key([mod], "t", lazy.spawncmd(), desc="Spawn a command using a prompt"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch web browser"),
     Key(
