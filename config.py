@@ -1,6 +1,7 @@
 import os
 import json
 import subprocess
+import psutil
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -17,44 +18,13 @@ display: dict = settings["display"]
 with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as file:
     colors_json = json.load(file)
 
-# special_clrs = colors_json["special"]
 colors = colors_json
-# clrs = colors["colors"]
 wallpaper = looks["wallpaper"]
-
-
-# def needs_dark(hex_code: str):
-#     h = hex_code.lstrip("#")
-#     rgb = tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
-
-#     red = rgb[0]
-#     green = rgb[1]
-#     blue = rgb[2]
-
-#     return True if (red * 0.299 + green * 0.587 + blue * 0.114) > 100 else False
-
-
-# def get_fg(needs_dark: bool):
-#     return clrs["color0"] if needs_dark else special_clrs["foreground"]
-
-
-# uncomment if using pywal
-# colors = {
-#     "bg": clrs["color0"],
-#     "fg": special_clrs["foreground"],
-#     "current_screen_tab": clrs["color11"],
-#     "color1fg": get_fg(needs_dark(clrs["color6"])),
-#     "color2fg": get_fg(needs_dark(clrs["color9"])),
-#     "color1": clrs["color6"],
-#     "color2": clrs["color9"],
-#     "active": clrs["color7"],
-#     "inactive": clrs["color8"],
-#     "window_name": special_clrs["foreground"],
-# }
 
 mod = "mod4"
 terminal = "alacritty"
-browser = "google-chrome"
+browser = "firefox"
+file_manager = "pcmanfm"
 
 keys = [
     # Switch between windows
@@ -109,11 +79,12 @@ keys = [
     ),
     Key([mod], "t", lazy.spawncmd(), desc="Spawn a command using a prompt"),
     Key([mod], "b", lazy.spawn(browser), desc="Launch web browser"),
+    Key([mod], "c", lazy.spawn(file_manager), desc="Launch File Manager"),
     Key(
         [mod], "v", lazy.spawn("rofi -show window"), desc="Show active windows in rofi"
     ),
-    Key([mod], "c", lazy.spawn("code"), desc="Open vscode"),
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
+    Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot")
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -207,12 +178,42 @@ power_widgets: list = [
 ]
 
 widgets_list: list = [
+    ### Run ###
+    widget.Sep(
+       linewidth=0,
+        padding=6,
+        background=colors["start"]
+    ),
+    widget.Image(
+        filename='~/.config/qtile/config/manjaro.png',
+        margin=5,
+        background=colors["start"],
+        mouse_callbacks={
+            "Button1": lambda: os.system('rofi -show drun')
+        }
+    ),
+    widget.TextBox(
+        text="caret-right",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["start"],
+        background=colors["groups_bg"],
+        fontsize=49,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="chevron-right",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["start"],
+        background=colors["groups_bg"],
+        fontsize=35,
+        padding=0,
+    ),
+   
     ### Groups ###
     widget.Sep(
        linewidth=0,
         padding=6,
         background = colors["groups_bg"]
-
     ),
     widget.GroupBox(
         font=looks["caret_font"],
@@ -228,28 +229,76 @@ widgets_list: list = [
         foreground=colors["fg"],
         background = colors["groups_bg"]
     ),
-    widget.Sep(padding=6, linewidth=0),
+    widget.Sep(padding=6, linewidth=0,
+        background = colors["groups_bg"]
+        ),
     widget.Prompt(
-        foreground=colors["color1fg"],
-        #   background = colors["color1"]
+        foreground=colors["active"],
+        background = colors["groups_bg"]
     ),
-    widget.Sep(padding=6, linewidth=0),
-    
+    widget.Sep(padding=6, linewidth=0,
+    background=colors["groups_bg"]
+        ),
+    widget.TextBox(
+        text="caret-right",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["groups_bg"],
+        background=colors["bg"],
+        fontsize=49,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="chevron-right",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["groups_bg"],
+        background=colors["bg"],
+        fontsize=35,
+        padding=0,
+    ),
+   
     widget.Spacer(),
     
     ### Systray ###
-#    widget.Sep(
-#        linewidth=0,
-#        padding=3,
-#    ),
-#    widget.Sep(padding=2, linewidth=0),
-#    widget.Systray(background=colors["bg"],padding=10),
-#    widget.Sep(
-#        linewidth=0,
-#        padding=6,
-#    ),
+     widget.TextBox(
+        text="chevron-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["systray"],
+        background=colors["bg"],
+        fontsize=35,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="caret-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["systray"],
+        background=colors["bg"],
+        fontsize=49,
+        padding=0,
+    ),
+    widget.Systray(background=colors["systray"],padding=10),
+    widget.Sep(
+        linewidth=0,
+        padding=6,
+        background=colors["systray"]
+    ),
     
     ### Volume ###
+    widget.TextBox(
+        text="chevron-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color3"],
+        background=colors["systray"],
+        fontsize=35,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="caret-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color3"],
+        background=colors["systray"],
+        fontsize=49,
+        padding=0,
+    ),
     widget.Sep(padding=12, linewidth=0, background=colors["color3"]),
     widget.TextBox(
         text="volume-off",
@@ -263,6 +312,22 @@ widgets_list: list = [
     widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
 
     ### Clock ###
+    widget.TextBox(
+        text="chevron-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color1"],
+        background=colors["color3"],
+        fontsize=35,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="caret-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color1"],
+        background=colors["color3"],
+        fontsize=49,
+        padding=0,
+    ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     widget.TextBox(
         foreground=colors["color1fg"],
@@ -285,6 +350,22 @@ widgets_list: list = [
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
 
     ### Power Buttons ###
+    widget.TextBox(
+        text="chevron-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color2"],
+        background=colors["color1"],
+        fontsize=35,
+        padding=0,
+    ),
+    widget.TextBox(
+        text="caret-left",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color2"],
+        background=colors["color1"],
+        fontsize=49,
+        padding=0,
+    ),
     widget.Sep(padding=9, linewidth=0, background=colors["color2"]),
     widget.WidgetBox(
         widgets=power_widgets,
@@ -323,12 +404,12 @@ screens = [screen]
 mouse = [
     Drag(
         [mod],
-        "Button3",
+        "Button1",
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button1", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
@@ -344,13 +425,33 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
+        Match(wm_type="utility"),
+        Match(wm_type="notification"),
+        Match(wm_type="toolbar"),
+        Match(wm_type="splash"),
+        Match(wm_type="dialog"),
+        Match(wm_class="confirm"),
+        Match(wm_class="dialog"),
+        Match(wm_class="download"),
+        Match(wm_class="error"),
+        Match(wm_class="file_progress"),
+        Match(wm_class="notification"),
+        Match(wm_class="splash"),
+        Match(wm_class="toolbar"),
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(wm_class="plank"),  # plank
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(wm_class="pomotroid"),
+        Match(wm_class="cmatrixterm"),
+        Match(title="Farge"),
+        Match(wm_class="org.gnome.Nautilus"),
+        Match(wm_class="feh"),
+        Match(wm_class="plank"),
+        Match(wm_class="gnome-calculator"),
+        Match(wm_class="blueberry"),
     ]
 )
 
@@ -364,7 +465,35 @@ def start_once():
 def runner():
     subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
 
-bauto_fullscreen = True
-focus_on_window_activation = "focus"
-ring_front_click = True
+@hook.subscribe.client_new
+def set_floating(window):
+    if (window.window.get_wm_transient_for()
+            or window.window.get_wm_type() in floating_types):
+        window.floating = True
+
+floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
+
+# @hook.subscribe.client_new
+# def _swallow(window):
+#     pid = window.window.get_net_wm_pid()
+#     ppid = psutil.Process(pid).ppid()
+#     cpids = {
+#         c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()
+#     }
+#     for i in range(5):
+#         if not ppid:
+#             return
+#         if ppid in cpids:
+#             parent = window.qtile.windows_map.get(cpids[ppid])
+#             parent.minimized = True
+#             window.parent = parent
+#             return
+#         ppid = psutil.Process(ppid).ppid()
+
+
+@hook.subscribe.client_killed
+def _unswallow(window):
+    if hasattr(window, "parent"):
+        window.parent.minimized = False
+
 wmname = "LG3D"

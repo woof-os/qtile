@@ -6,5 +6,5 @@ Yea, yet another qtile user making a dumb config.
 
 ## Screenshots
 
-<img src='./config/1.jpg' >
-<img src='./config/2.jpg' >
+<img src='./config/1.png' >
+
