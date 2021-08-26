@@ -22,7 +22,7 @@ colors = colors_json
 wallpaper = looks["wallpaper"]
 
 mod = "mod4"
-terminal = "alacritty"
+terminal = "kitty"
 browser = "firefox"
 file_manager = "pcmanfm"
 
@@ -84,7 +84,7 @@ keys = [
         [mod], "v", lazy.spawn("rofi -show window"), desc="Show active windows in rofi"
     ),
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
-    Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot")
+    Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -134,8 +134,8 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 layout_theme = {
     "border_width": 1,
     "margin": 8,
-#     "border_focus": colors["color1"],
-#     "border_normal": colors["color2"],
+    #     "border_focus": colors["color1"],
+    #     "border_normal": colors["color2"],
     "border_focus": colors["border_focus"],
     "border_normal": colors["border_normal"],
 }
@@ -147,7 +147,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Jetbrains Mono",
+    font="Cantarell",
     fontsize=11,
     padding=3,
 )
@@ -179,18 +179,12 @@ power_widgets: list = [
 
 widgets_list: list = [
     ### Run ###
-    widget.Sep(
-       linewidth=0,
-        padding=6,
-        background=colors["start"]
-    ),
+    widget.Sep(linewidth=0, padding=6, background=colors["start"]),
     widget.Image(
-        filename='~/.config/qtile/config/manjaro.png',
+        filename="~/.config/qtile/config/manjaro.png",
         margin=5,
         background=colors["start"],
-        mouse_callbacks={
-            "Button1": lambda: os.system('rofi -show drun')
-        }
+        mouse_callbacks={"Button1": lambda: os.system("rofi -show drun")},
     ),
     widget.TextBox(
         text="caret-right",
@@ -200,21 +194,16 @@ widgets_list: list = [
         fontsize=49,
         padding=0,
     ),
-    widget.TextBox(
-        text="chevron-right",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["start"],
-        background=colors["groups_bg"],
-        fontsize=35,
-        padding=0,
-    ),
-   
+    #     widget.TextBox(
+    #         text="chevron-right",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["start"],
+    #         background=colors["groups_bg"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     ### Groups ###
-    widget.Sep(
-       linewidth=0,
-        padding=6,
-        background = colors["groups_bg"]
-    ),
+    widget.Sep(linewidth=0, padding=6, background=colors["groups_bg"]),
     widget.GroupBox(
         font=looks["caret_font"],
         borderwidth=3,
@@ -227,18 +216,16 @@ widgets_list: list = [
         this_screen_border=colors["color1"],
         other_screen_border=colors["bg"],
         foreground=colors["fg"],
-        background = colors["groups_bg"]
+        background=colors["groups_bg"],
     ),
-    widget.Sep(padding=6, linewidth=0,
-        background = colors["groups_bg"]
-        ),
+    widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
     widget.Prompt(
         foreground=colors["active"],
-        background = colors["groups_bg"]
+        background=colors["groups_bg"],
+        font="Fira Code",
+        prompt="Woof: "
     ),
-    widget.Sep(padding=6, linewidth=0,
-    background=colors["groups_bg"]
-        ),
+    widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
     widget.TextBox(
         text="caret-right",
         font="Font Awesome 5 Free Solid",
@@ -247,26 +234,24 @@ widgets_list: list = [
         fontsize=49,
         padding=0,
     ),
-    widget.TextBox(
-        text="chevron-right",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["groups_bg"],
-        background=colors["bg"],
-        fontsize=35,
-        padding=0,
-    ),
-   
+    #     widget.TextBox(
+    #         text="chevron-right",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["groups_bg"],
+    #         background=colors["bg"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     widget.Spacer(),
-    
     ### Systray ###
-     widget.TextBox(
-        text="chevron-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["systray"],
-        background=colors["bg"],
-        fontsize=35,
-        padding=0,
-    ),
+    #     widget.TextBox(
+    #         text="chevron-left",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["systray"],
+    #         background=colors["bg"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     widget.TextBox(
         text="caret-left",
         font="Font Awesome 5 Free Solid",
@@ -275,27 +260,40 @@ widgets_list: list = [
         fontsize=49,
         padding=0,
     ),
-    widget.Systray(background=colors["systray"],padding=10),
-    widget.Sep(
-        linewidth=0,
-        padding=6,
-        background=colors["systray"]
-    ),
-    
-    ### Volume ###
+    widget.Systray(background=colors["systray"], padding=10),
+    widget.Sep(linewidth=0, padding=6, background=colors["systray"]),
+
+    ### CMUS ###
     widget.TextBox(
-        text="chevron-left",
+        text="caret-left",
         font="Font Awesome 5 Free Solid",
-        foreground=colors["color3"],
+        foreground=colors["color4"],
         background=colors["systray"],
-        fontsize=35,
+        fontsize=49,
         padding=0,
     ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
+    widget.Cmus(
+        background=colors["color4"],
+        foreground=colors["color4fg"],
+        play_color=colors["color4fg"],
+        font=str(widget_defaults["font"])
+    ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
+    ### Volume ###
+    #     widget.TextBox(
+    #         text="chevron-left",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["color3"],
+    #         background=colors["systray"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     widget.TextBox(
         text="caret-left",
         font="Font Awesome 5 Free Solid",
         foreground=colors["color3"],
-        background=colors["systray"],
+        background=colors["color4"],
         fontsize=49,
         padding=0,
     ),
@@ -310,16 +308,15 @@ widgets_list: list = [
     ),
     widget.Volume(foreground=colors["color3fg"], background=colors["color3"]),
     widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
-
     ### Clock ###
-    widget.TextBox(
-        text="chevron-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color1"],
-        background=colors["color3"],
-        fontsize=35,
-        padding=0,
-    ),
+    #     widget.TextBox(
+    #         text="chevron-left",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["color1"],
+    #         background=colors["color3"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     widget.TextBox(
         text="caret-left",
         font="Font Awesome 5 Free Solid",
@@ -334,30 +331,32 @@ widgets_list: list = [
         background=colors["color1"],
         text=" calendar-alt",
         font="Font Awesome 5 Free Solid",
-        mouse_callbacks={
-            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
-        },
+        #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
+        #        mouse_callbacks={
+        #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
+        #        },
     ),
     widget.Clock(
         foreground=colors["color1fg"],
         background=colors["color1"],
+        # Uncomment below line to show full info.
         # format="%a, %b %d - %H:%M",
         format="%H:%M",
-        mouse_callbacks={
-            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
-        },
+        #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
+        #        mouse_callbacks={
+        #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
+        #        },
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
-
     ### Power Buttons ###
-    widget.TextBox(
-        text="chevron-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color2"],
-        background=colors["color1"],
-        fontsize=35,
-        padding=0,
-    ),
+    #     widget.TextBox(
+    #         text="chevron-left",
+    #         font="Font Awesome 5 Free Solid",
+    #         foreground=colors["color2"],
+    #         background=colors["color1"],
+    #         fontsize=35,
+    #         padding=0,
+    #     ),
     widget.TextBox(
         text="caret-left",
         font="Font Awesome 5 Free Solid",
@@ -452,6 +451,7 @@ floating_layout = layout.Floating(
         Match(wm_class="plank"),
         Match(wm_class="gnome-calculator"),
         Match(wm_class="blueberry"),
+        Match(wm_class="protonvpn"),
     ]
 )
 
@@ -461,15 +461,20 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+
 @hook.subscribe.startup
 def runner():
-    subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
+    subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
+
 
 @hook.subscribe.client_new
 def set_floating(window):
-    if (window.window.get_wm_transient_for()
-            or window.window.get_wm_type() in floating_types):
+    if (
+        window.window.get_wm_transient_for()
+        or window.window.get_wm_type() in floating_types
+    ):
         window.floating = True
+
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
@@ -495,5 +500,6 @@ floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 def _unswallow(window):
     if hasattr(window, "parent"):
         window.parent.minimized = False
+
 
 wmname = "LG3D"
