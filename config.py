@@ -222,7 +222,7 @@ widgets_list: list = [
     widget.Prompt(
         foreground=colors["active"],
         background=colors["groups_bg"],
-        font="Fira Code",
+        font="Jetbrains Mono",
         prompt="Woof: "
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
@@ -386,8 +386,8 @@ widgets_list: list = [
 bar_margin = 0
 
 screen = Screen(
-    wallpaper=wallpaper,
-    wallpaper_mode="fill",
+#     wallpaper=wallpaper,
+#     wallpaper_mode="fill",
     top=bar.Bar(
         widgets_list,
         int(looks["panel-size"]),
@@ -465,6 +465,7 @@ def start_once():
 @hook.subscribe.startup
 def runner():
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
+    subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
 
 
 @hook.subscribe.client_new
