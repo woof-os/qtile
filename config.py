@@ -186,22 +186,7 @@ widgets_list: list = [
         background=colors["start"],
         mouse_callbacks={"Button1": lambda: os.system("rofi -show drun")},
     ),
-    widget.TextBox(
-        text="caret-right",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["start"],
-        background=colors["groups_bg"],
-        fontsize=49,
-        padding=0,
-    ),
-    #     widget.TextBox(
-    #         text="chevron-right",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["start"],
-    #         background=colors["groups_bg"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
+
     ### Groups ###
     widget.Sep(linewidth=0, padding=6, background=colors["groups_bg"]),
     widget.GroupBox(
@@ -226,52 +211,11 @@ widgets_list: list = [
         prompt="Woof: "
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
-    widget.TextBox(
-        text="caret-right",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["groups_bg"],
-        background=colors["bg"],
-        fontsize=49,
-        padding=0,
-    ),
-    #     widget.TextBox(
-    #         text="chevron-right",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["groups_bg"],
-    #         background=colors["bg"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
     widget.Spacer(),
-    ### Systray ###
-    #     widget.TextBox(
-    #         text="chevron-left",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["systray"],
-    #         background=colors["bg"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
-    widget.TextBox(
-        text="caret-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["systray"],
-        background=colors["bg"],
-        fontsize=49,
-        padding=0,
-    ),
     widget.Systray(background=colors["systray"], padding=10),
     widget.Sep(linewidth=0, padding=6, background=colors["systray"]),
 
     ### CMUS ###
-    widget.TextBox(
-        text="caret-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color4"],
-        background=colors["systray"],
-        fontsize=49,
-        padding=0,
-    ),
     widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
     widget.Cmus(
         background=colors["color4"],
@@ -281,22 +225,6 @@ widgets_list: list = [
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
     ### Volume ###
-    #     widget.TextBox(
-    #         text="chevron-left",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["color3"],
-    #         background=colors["systray"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
-    widget.TextBox(
-        text="caret-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color3"],
-        background=colors["color4"],
-        fontsize=49,
-        padding=0,
-    ),
     widget.Sep(padding=12, linewidth=0, background=colors["color3"]),
     widget.TextBox(
         text="volume-off",
@@ -309,22 +237,6 @@ widgets_list: list = [
     widget.Volume(foreground=colors["color3fg"], background=colors["color3"]),
     widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
     ### Clock ###
-    #     widget.TextBox(
-    #         text="chevron-left",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["color1"],
-    #         background=colors["color3"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
-    widget.TextBox(
-        text="caret-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color1"],
-        background=colors["color3"],
-        fontsize=49,
-        padding=0,
-    ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     widget.TextBox(
         foreground=colors["color1fg"],
@@ -349,22 +261,6 @@ widgets_list: list = [
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     ### Power Buttons ###
-    #     widget.TextBox(
-    #         text="chevron-left",
-    #         font="Font Awesome 5 Free Solid",
-    #         foreground=colors["color2"],
-    #         background=colors["color1"],
-    #         fontsize=35,
-    #         padding=0,
-    #     ),
-    widget.TextBox(
-        text="caret-left",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color2"],
-        background=colors["color1"],
-        fontsize=49,
-        padding=0,
-    ),
     widget.Sep(padding=9, linewidth=0, background=colors["color2"]),
     widget.WidgetBox(
         widgets=power_widgets,
