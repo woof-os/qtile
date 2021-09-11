@@ -178,15 +178,15 @@ power_widgets: list = [
 ]
 
 widgets_list: list = [
-    ### Run ###
-    widget.Sep(linewidth=0, padding=6, background=colors["start"]),
-    widget.Image(
-        filename="~/.config/qtile/config/manjaro.png",
-        margin=5,
-        background=colors["start"],
-        mouse_callbacks={"Button1": lambda: os.system("rofi -show drun")},
-    ),
-    widget.Sep(linewidth=0, padding=6, background=colors["start"]),
+#     ### Run ###
+#     widget.Sep(linewidth=0, padding=6, background=colors["start"]),
+#     widget.Image(
+#         filename="~/.config/qtile/config/manjaro.png",
+#         margin=5,
+#         background=colors["start"],
+#         mouse_callbacks={"Button1": lambda: os.system("rofi -show drun")},
+#     ),
+#     widget.Sep(linewidth=0, padding=6, background=colors["start"]),
     ### Groups ###
     widget.Sep(linewidth=0, padding=6, background=colors["groups_bg"]),
     widget.GroupBox(
@@ -280,7 +280,7 @@ widgets_list: list = [
 ]
 
 # bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
-bar_margin = 4
+bar_margin = 0
 
 screen = Screen(
 #     wallpaper=wallpaper,
