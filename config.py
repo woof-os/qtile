@@ -460,22 +460,14 @@ floating_layout = layout.Floating(
 def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
-
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
 
 @hook.subscribe.startup
 def runner():
+    home = os.path.expanduser("~")
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
     subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
-
-
-@hook.subscribe.client_new
-def set_floating(window):
-    if (
-        window.window.get_wm_transient_for()
-        or window.window.get_wm_type() in floating_types
-    ):
-        window.floating = True
-
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
