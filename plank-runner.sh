@@ -6,7 +6,19 @@ SCRIPT_DIR=$(dirname $(realpath $0))
 APP_WIN_ID=/tmp/plank_win_id
 APP_PID=/tmp/plank_pid
 
+<<<<<<< HEAD
 
+=======
+start() {
+    plank &
+    echo $! > $APP_PID
+    APP_WIN=$(xdotool search --sync --onlyvisible --class "plank")
+    xdotool set_window --overrideredirect 1 $APP_WIN
+    xdotool windowsize $APP_WIN x 160
+    xdotool windowunmap $APP_WIN
+    echo $APP_WIN > $APP_WIN_ID
+}
+>>>>>>> fbc570cb0295062f0ff8ada879e24efef1a961d3
 
 show() {
     local win=$(cat $APP_WIN_ID)
@@ -32,6 +44,7 @@ close() {
         kill $pid
     fi
 }
+<<<<<<< HEAD
 start() {
     plank &
     echo $! > $APP_PID
@@ -42,6 +55,9 @@ start() {
     echo $APP_WIN > $APP_WIN_ID
     show
 }
+=======
+
+>>>>>>> fbc570cb0295062f0ff8ada879e24efef1a961d3
 case "$1" in
     start)
         start;;
