@@ -10,10 +10,6 @@ config() {
 	echo -e "\033[95m\033[1mStarting...\033[0m"
 	sleep 3
 	clear
-	echo -e "\033[95m\033[1mInstalling Libraries...\033[0m"
-	sudo pip3 install psutil
-	sleep 1
-	clear
 	echo -e "\033[95m\033[1mCopying Files...\033[0m"
 	cp ./* ~/.config/qtile/
 	sleep 1
