@@ -133,7 +133,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {
     "border_width": 1,
-    "margin": 8,
+    "margin": 4,
     #     "border_focus": colors["color1"],
     #     "border_normal": colors["color2"],
     "border_focus": colors["border_focus"],
@@ -222,7 +222,7 @@ widgets_list: list = [
         background=colors["color4"],
         foreground=colors["color4fg"],
         play_color=colors["color4fg"],
-        font=str(widget_defaults["font"])
+        font=widget_defaults["font"]
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
     ### Volume ###
@@ -280,7 +280,7 @@ widgets_list: list = [
 ]
 
 # bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
-bar_margin = 0
+bar_margin = 4
 
 screen = Screen(
 #     wallpaper=wallpaper,
@@ -358,6 +358,7 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
     subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 @hook.subscribe.startup
 def runner():
@@ -365,7 +366,7 @@ def runner():
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
     subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
     subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
-
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
