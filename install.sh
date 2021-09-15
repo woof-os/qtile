@@ -34,6 +34,7 @@ config() {
 
 echo -e "\033[41mAll contents of ~/.config/qtile will be deleted\033[0m"
 echo -e "\033[96m"
+echo -e "All contents of ~/.config/qtile will be deleted"
 read -p "Are you sure you want to install Woof's config? (yes/no): " yn
 case $yn in
     [Yy]* ) config;;
