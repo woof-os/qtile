@@ -6,4 +6,4 @@ Yea, yet another qtile user making a dumb config.
 
 ## Screenshots
 
-<img src="https://cdn.discordapp.com/attachments/783846857448489011/887663749803167774/unknown.png">
+<img src="https://cdn.discordapp.com/attachments/864505510669320212/888008975730217021/unknown.png">
