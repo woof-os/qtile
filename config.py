@@ -252,8 +252,7 @@ widgets_list: list = [
         foreground=colors["color1fg"],
         background=colors["color1"],
         # Uncomment below line to show full info.
-        # format="%a, %b %d - %H:%M",
-        format="%H:%M",
+        format="%H:%M, %D",
         #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
         #        mouse_callbacks={
         #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
