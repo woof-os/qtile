@@ -131,7 +131,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 layout_theme = {
-    "border_width": 1,
+    "border_width": 2,
     "margin": 4,
     #     "border_focus": colors["color1"],
     #     "border_normal": colors["color2"],
@@ -363,16 +363,16 @@ def runner():
     home = os.path.expanduser("~")
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
     subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
-    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
-    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
+#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
+#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
 @hook.subscribe.client_new
 def bring_plank_to_front(*_):
     home = os.path.expanduser("~")
-    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "hide"])
-    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
+#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "hide"])
+#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 @lazy.function
 def float_to_front(qtile):

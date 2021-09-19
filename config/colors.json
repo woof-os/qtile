@@ -8,12 +8,12 @@
   "groups_bg": "#1a1b26",
   "current_screen_tab": "#9ece6a",
   "systray": "#1a1b26",
-  "color2": "#7aa2f7",
-  "color2fg": "#1a1b26",
-  "color1": "#9a7ecc",
-  "color1fg": "#1a1b26",
-  "color3": "#e0af68",
-  "color3fg": "#1a1b26",
-  "color4": "#9ece6a",
-  "color4fg": "#1a1b26"
+  "color2fg": "#7aa2f7",
+  "color2": "#1a1b26",
+  "color1fg": "#9a7ecc",
+  "color1": "#1a1b26",
+  "color3fg": "#e0af68",
+  "color3": "#1a1b26",
+  "color4fg": "#9ece6a",
+  "color4": "#1a1b26"
 }
