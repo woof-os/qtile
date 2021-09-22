@@ -363,16 +363,16 @@ def runner():
     home = os.path.expanduser("~")
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
     subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
-#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
-#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "start"])
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
 @hook.subscribe.client_new
 def bring_plank_to_front(*_):
     home = os.path.expanduser("~")
-#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "hide"])
-#    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "hide"])
+    subprocess.Popen([home + "/.config/qtile/plank-runner.sh", "show"])
 
 @lazy.function
 def float_to_front(qtile):
