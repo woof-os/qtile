@@ -18,7 +18,7 @@ with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as fi
     colors_json = json.load(file)
 
 colors = colors_json
-wallpaper = looks["wallpaper"]
+wallpaper = looks["wallpaper"].replace("~", os.getenv("HOME"))
 
 mod = "mod4"
 terminal = "kitty"
