@@ -1,5 +1,5 @@
 {
-  "bg": "#2E3440",
+  "bg": "#2E344090",
   "fg": "#ECEFF4",
   "active": "#A3BE8C",
   "inactive": "#D8DEE9",
@@ -8,7 +8,7 @@
   "groups_bg": "#3B4252",
   "current_screen_tab": "#A3BE8C",
   "systray": "#2E3440",
-  "seperator": "#2E3440",
+  "seperator": "#2E344090",
   "color2": "#5E81AC",
   "color2fg": "#2E3440",
   "color1": "#B48EAD",

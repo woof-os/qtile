@@ -187,7 +187,7 @@ widgets_list: list = [
 #     ),
 #     widget.Sep(linewidth=0, padding=6, background=colors["start"]),
     ### Groups ###
-    widget.Sep(linewidth=0, padding=6, background=colors["seperator"]),
+    widget.Sep(linewidth=0, padding=6, background=colors["groups_bg"]),
     widget.GroupBox(
         font=looks["caret_font"],
         borderwidth=3,
@@ -241,7 +241,7 @@ widgets_list: list = [
         background=colors["color2"],
         foreground=colors["color2fg"],
         font=widget_defaults["font"],
-        location={"~": "Woofverse"}
+        location={"Jaffna": "Woofverse"}
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
