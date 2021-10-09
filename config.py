@@ -18,11 +18,11 @@ with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as fi
     colors_json = json.load(file)
 
 colors = colors_json
-wallpaper = looks["wallpaper"].replace("~", os.getenv("HOME"))
+wallpaper = looks["wallpaper"]
 
 mod = "mod4"
 terminal = "kitty"
-browser = "firefox"
+browser = "brave"
 file_manager = "pcmanfm"
 
 keys = [
@@ -114,7 +114,7 @@ for i in groups:
 
 group_names = [
     ("code", {"layout": "monadtall"}),
-    ("wifi", {"layout": "monadtall"}),
+    ("wifi", {"layout": "max"}),
     ("box", {"layout": "monadtall"}),
     ("book", {"layout": "max"}),
     ("comment", {"layout": "max"}),
@@ -131,7 +131,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 layout_theme = {
-    "border_width": 2,
+    "border_width": 1,
     "margin": 4,
     #     "border_focus": colors["color1"],
     #     "border_normal": colors["color2"],
@@ -156,7 +156,7 @@ power_widgets: list = [
     widget.Sep(
         linewidth=0,
         padding=8,
-        background=colors["color2"],
+        background=colors["seperator"],
         foreground=colors["color2fg"],
     ),
     widget.TextBox(
@@ -187,7 +187,7 @@ widgets_list: list = [
 #     ),
 #     widget.Sep(linewidth=0, padding=6, background=colors["start"]),
     ### Groups ###
-    widget.Sep(linewidth=0, padding=6, background=colors["groups_bg"]),
+    widget.Sep(linewidth=0, padding=6, background=colors["seperator"]),
     widget.GroupBox(
         font=looks["caret_font"],
         borderwidth=3,
@@ -202,30 +202,71 @@ widgets_list: list = [
         foreground=colors["fg"],
         background=colors["groups_bg"],
     ),
-    widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
+    widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     widget.Prompt(
         foreground=colors["active"],
         background=colors["groups_bg"],
         font="Jetbrains Mono",
         prompt="Woof: "
     ),
-    widget.Sep(padding=6, linewidth=0, background=colors["groups_bg"]),
+    widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     widget.Spacer(),
     ### Systray ###
-    widget.Systray(background=colors["systray"], padding=10),
-    widget.Sep(linewidth=0, padding=6, background=colors["systray"]),
+    # widget.Systray(background=colors["systray"], padding=10),
+    # widget.Sep(linewidth=0, padding=6, background=colors["systray"]),
 
     ### CMUS ###
+    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
+    # widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
+    # widget.Cmus(
+    #     background=colors["color4"],
+    #     foreground=colors["color4fg"],
+    #     play_color=colors["color4fg"],
+    #     font=widget_defaults["font"]
+    # ),
+    # widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
+    # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
+    ### Weather ###
+    widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
+    widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
+    widget.TextBox(
+        text="globe-asia ",
+        font="Font Awesome 5 Free Solid",
+        foreground=colors["color2fg"],
+        background=colors["color2"],
+        fontsize=14,
+        padding=0,
+    ),
+    widget.Wttr(
+        background=colors["color2"],
+        foreground=colors["color2fg"],
+        font=widget_defaults["font"],
+        location={"~": "Woofverse"}
+    ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
+    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
+    ### Update ###
+    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
-    widget.Cmus(
-        background=colors["color4"],
+    widget.TextBox(
+        text="download ",
+        font="Font Awesome 5 Free Solid",
         foreground=colors["color4fg"],
-        play_color=colors["color4fg"],
-        font=widget_defaults["font"]
+        background=colors["color4"],
+        fontsize=14,
+        padding=0,
+    ),
+    widget.CheckUpdates(
+        background=colors["color4"],
+        colour_have_updates=colors["color4fg"],
+        colour_no_updates=colors["color4fg"],
+        font=widget_defaults["font"],
+        no_update_string="No Updates For Woof",
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
+    # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
     ### Volume ###
-    widget.Sep(padding=12, linewidth=0, background=colors["color3"]),
+    widget.Sep(padding=9, linewidth=0, background=colors["color3"]),
     widget.TextBox(
         text="volume-off",
         font="Font Awesome 5 Free Solid",
@@ -236,12 +277,13 @@ widgets_list: list = [
     ),
     widget.Volume(foreground=colors["color3fg"], background=colors["color3"]),
     widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
+    # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
     ### Clock ###
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     widget.TextBox(
         foreground=colors["color1fg"],
         background=colors["color1"],
-        text=" calendar-alt",
+        text="calendar-alt",
         font="Font Awesome 5 Free Solid",
         #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
         #        mouse_callbacks={
@@ -259,22 +301,8 @@ widgets_list: list = [
         #        },
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
-    ### Power Buttons ###
-    widget.Sep(padding=9, linewidth=0, background=colors["color2"]),
-    widget.WidgetBox(
-        widgets=power_widgets,
-        background=colors["color2"],
-        foreground=colors["color2fg"],
-        font=looks["caret_font"],
-        text_closed="power-off",
-        text_open="times",
-    ),
-    widget.Sep(
-        linewidth=0,
-        padding=8,
-        background=colors["color2"],
-        foreground=colors["color2fg"],
-    ),
+    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
+
 ]
 
 # bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
