@@ -6,4 +6,4 @@ Yea, yet another qtile user making a dumb config.
 
 ## Screenshots
 
-<img src="https://cdn.discordapp.com/attachments/864505510669320212/888985444673548328/unknown.png">
+<img src="https://woof-os.github.io/screenshot.jpg">
