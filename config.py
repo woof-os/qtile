@@ -152,7 +152,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Cantarell",
+    font="Fira Sans Medium",
     fontsize=11,
     padding=3,
 )
