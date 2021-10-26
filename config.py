@@ -218,6 +218,7 @@ widgets_list: list = [
     widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     widget.Spacer(),
     ### Clock ###
+    widget.Sep(padding=6, linewidth=0, background=colors["color5"]),
     widget.Clock(
         foreground=colors["color5fg"],
         background=colors["color5"],
@@ -228,6 +229,7 @@ widgets_list: list = [
         #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
         #        },
     ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color5"]),
     widget.Spacer(),
     ### Systray ###
     widget.Systray(background=colors["systray"], padding=10),
