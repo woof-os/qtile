@@ -261,7 +261,7 @@ widgets_list: list = [
         background=colors["color2"],
         foreground=colors["color2fg"],
         font=widget_defaults["font"],
-        location={"~": " "}
+        location={"Jaffna": "Woofverse"}
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
@@ -332,12 +332,12 @@ screen = Screen(
 #     wallpaper=wallpaper,
 #     wallpaper_mode="fill",
     top=bar.Bar(
-        widgets_list,
-        int(looks["panel-size"]),
-        background=colors["bg"],
-        opacity=float(looks["panel-opacity"]),
-        margin=bar_margin,
-    ),
+       widgets_list,
+       int(looks["panel-size"]),
+       background=colors["bg"],
+       opacity=float(looks["panel-opacity"]),
+       margin=bar_margin,
+   ),
 )
 
 screens = [screen]
