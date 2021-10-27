@@ -5,7 +5,7 @@
   "inactive": "#c5c8c6",
   "border_focus": "#b294bb",
   "border_normal": "#1d1f21",
-  "groups_bg": "#282a2e",
+  "groups_bg": "#1d1f21",
   "current_screen_tab": "#b5bd68",
   "systray": "#1d1f21",
   "seperator": "#1d1f21",

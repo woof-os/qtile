@@ -261,7 +261,7 @@ widgets_list: list = [
         background=colors["color2"],
         foreground=colors["color2fg"],
         font=widget_defaults["font"],
-        location={"~": "Woofverse"}
+        location={"Jaffna": "Woofverse"}
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
