@@ -247,23 +247,23 @@ widgets_list: list = [
     # widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
     # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
     ### Weather ###
-    widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
-    widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
-    widget.TextBox(
-        text="globe-asia ",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color2fg"],
-        background=colors["color2"],
-        fontsize=14,
-        padding=0,
-    ),
-    widget.Wttr(
-        background=colors["color2"],
-        foreground=colors["color2fg"],
-        font=widget_defaults["font"],
-        location={"Jaffna": "Woofverse"}
-    ),
-    widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
+#     widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
+#     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
+#     widget.TextBox(
+#         text="globe-asia ",
+#         font="Font Awesome 5 Free Solid",
+#         foreground=colors["color2fg"],
+#         background=colors["color2"],
+#         fontsize=14,
+#         padding=0,
+#     ),
+#     widget.Wttr(
+#         background=colors["color2"],
+#         foreground=colors["color2fg"],
+#         font=widget_defaults["font"],
+#         location={"Jaffna": "Woofverse"}
+#     ),
+#     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     ### Update ###
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
