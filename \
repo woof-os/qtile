@@ -1,7 +1,6 @@
 import os
 import json
 import subprocess
-from datetime import datetime
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -89,7 +88,7 @@ keys = [
     ),
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
     Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
-    Key([mod], "d", lazy.spawn(f"notify-send '{datetime.now()}'"), desc="Show date and time"),
+    Key([mod], "d", subprocess.call(['notify-send', "$(date)"]), desc="Show date and time"),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -333,13 +332,13 @@ bar_margin = 0
 screen = Screen(
 #     wallpaper=wallpaper,
 #     wallpaper_mode="fill",
-    top=bar.Bar(
-       widgets_list,
-       int(looks["panel-size"]),
-       background=colors["bg"],
-       opacity=float(looks["panel-opacity"]),
-       margin=bar_margin,
-   ),
+#     top=bar.Bar(
+#        widgets_list,
+#        int(looks["panel-size"]),
+#        background=colors["bg"],
+#        opacity=float(looks["panel-opacity"]),
+#        margin=bar_margin,
+#    ),
 )
 
 screens = [screen]
