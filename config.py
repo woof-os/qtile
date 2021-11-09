@@ -22,7 +22,7 @@ colors = colors_json
 wallpaper = looks["wallpaper"]
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "alacritty"
 browser = "brave"
 file_manager = "pcmanfm"
 
