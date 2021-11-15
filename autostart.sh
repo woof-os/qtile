@@ -7,3 +7,4 @@ nm-applet &
 # calamares &
 # noisetorch &
 # flameshot &
+xfce4-power-manager &
