@@ -1,1 +1,11 @@
-{"looks": {"wallpaper": "/home/acutewoof/Pictures/wallpapers/Gruv/gruv-4.jpg", "caret_font_size": 49, "caret_font": "Font Awesome 5 Free Solid", "border-margin": 3, "border-width": 6, "panel-opacity": 1.0, "panel-size": 24}, "display": {"screen-count": 1}}
+{
+  "looks": {
+    "wallpaper": "/home/acutewoof/Pictures/wallpapers/256664.jpg",
+    "caret_font_size": 49,
+    "caret_font": "Font Awesome 5 Free Solid",
+    "panel-opacity": 1.0,
+    "panel-size": 20
+  },
+  "display": { "screen-count": 1 }
+}
+

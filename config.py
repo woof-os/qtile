@@ -138,7 +138,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 layout_theme = {
     "border_width": 1,
-    "margin": 4,
+    "margin": 2,
     #     "border_focus": colors["color1"],
     #     "border_normal": colors["color2"],
     "border_focus": colors["border_focus"],
@@ -155,7 +155,7 @@ layouts = [
 
 widget_defaults = dict(
     font="Fira Sans Medium",
-    fontsize=11,
+    fontsize=10,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -219,74 +219,10 @@ widgets_list: list = [
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
     widget.Spacer(),
-    ### Clock ###
-    widget.Sep(padding=6, linewidth=0, background=colors["color5"]),
-    widget.Clock(
-        foreground=colors["color5fg"],
-        background=colors["color5"],
-        # Uncomment below line to show full info.
-        format="%A - %H:%M",
-        #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
-        #        mouse_callbacks={
-        #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
-        #        },
-    ),
-    widget.Sep(padding=6, linewidth=0, background=colors["color5"]),
-    widget.Spacer(),
     ### Systray ###
     widget.Systray(background=colors["systray"], padding=10),
     widget.Sep(linewidth=0, padding=6, background=colors["systray"]),
 
-    ### CMUS ###
-    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
-    # widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
-    # widget.Cmus(
-    #     background=colors["color4"],
-    #     foreground=colors["color4fg"],
-    #     play_color=colors["color4fg"],
-    #     font=widget_defaults["font"]
-    # ),
-    # widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
-    # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
-    ### Weather ###
-#     widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
-#     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
-#     widget.TextBox(
-#         text="globe-asia ",
-#         font="Font Awesome 5 Free Solid",
-#         foreground=colors["color2fg"],
-#         background=colors["color2"],
-#         fontsize=14,
-#         padding=0,
-#     ),
-#     widget.Wttr(
-#         background=colors["color2"],
-#         foreground=colors["color2fg"],
-#         font=widget_defaults["font"],
-#         location={"Jaffna": "Woofverse"}
-#     ),
-#     widget.Sep(padding=6, linewidth=0, background=colors["color2"]),
-    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
-    ### Update ###
-    # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
-    widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
-    widget.TextBox(
-        text="download ",
-        font="Font Awesome 5 Free Solid",
-        foreground=colors["color4fg"],
-        background=colors["color4"],
-        fontsize=14,
-        padding=0,
-    ),
-    widget.CheckUpdates(
-        background=colors["color4"],
-        colour_have_updates=colors["color4fg"],
-        colour_no_updates=colors["color4fg"],
-        font=widget_defaults["font"],
-        no_update_string="No Updates For Woof",
-    ),
-    widget.Sep(padding=6, linewidth=0, background=colors["color4"]),
-    # widget.Sep(padding=12, linewidth=0, background=colors["seperator"]),
     ### Volume ###
     widget.Sep(padding=9, linewidth=0, background=colors["color3"]),
     widget.TextBox(
@@ -315,12 +251,23 @@ widgets_list: list = [
     widget.Clock(
         foreground=colors["color1fg"],
         background=colors["color1"],
-        # Uncomment below line to show full info.
         format="%D",
+    ),
+    widget.Sep(padding=6, linewidth=0, background=colors["color3"]),
+    widget.TextBox(
+        foreground=colors["color5fg"],
+        background=colors["color5"],
+        text="clock",
+        font="Font Awesome 5 Free Solid",
         #        Uncomment the below snippet to enable calendar as a notification if dunst uses monospace font.
         #        mouse_callbacks={
         #            "Button1": lambda: os.system(' notify-send "$(cal)" -i ICON ')
         #        },
+    ),
+    widget.Clock(
+            foreground=colors["color5fg"],
+            background=colors["color5"],
+            format="%A - %H:%M"
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["color1"]),
     # widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
