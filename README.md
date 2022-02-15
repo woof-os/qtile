@@ -6,4 +6,4 @@ Yea, yet another qtile user making a dumb config.
 
 ## Screenshots
 
-<img src="https://woof-os.github.io/screenshot.jpg">
+<img src="https://woof-os.github.io/static/screenshot.jpg">
