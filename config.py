@@ -90,6 +90,8 @@ keys = [
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
     Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
     Key([mod], "d", lazy.spawn(f"notify-send '{datetime.now()}'"), desc="Show date and time"),
+    # Toggle between screens
+    Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
 ]
 
 groups = [Group(i) for i in "1234567890"]
