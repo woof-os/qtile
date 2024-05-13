@@ -1,0 +1,16 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0info: Opening plain database via sqlite backend.
+warning: sqlite database already exists. Set your database backend to sqlite
+100  251k  100  251k    0     0   521k      0 --:--:-- --:--:-- --:--:--  521k
+error: could not open document
+
+info: Opening plain database via sqlite backend.
+warning: sqlite database already exists. Set your database backend to sqlite
+error: Could not determine file type.
+info: Opening plain database via sqlite backend.
+warning: sqlite database already exists. Set your database backend to sqlite
+error: Could not determine file type.
+info: Opening plain database via sqlite backend.
+warning: sqlite database already exists. Set your database backend to sqlite
+error: Could not determine file type.
