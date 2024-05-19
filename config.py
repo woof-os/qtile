@@ -91,6 +91,7 @@ keys = [
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
     Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
+    Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="View in MPV"),
     # Toggle between screens
     Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
 ]
