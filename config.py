@@ -92,6 +92,7 @@ keys = [
     Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
     Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="View in MPV"),
+    Key([mod, "control"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi Power Menu"),
     # Toggle between screens
     Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
 ]
