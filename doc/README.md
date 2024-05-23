@@ -1,8 +1,8 @@
-Woof OS Qtile Edition
-=====================
+Woof OS Qtile Edition - Qtile Config
+====================================
 
-Keybinds for Woof OS Qtile edition
-==================================
+Keybinds
+========
 
 Woof OS uses a tiling window manager, qtile, mainly controlled using the keyboard.  
 The keybinds listed here are declared in `~/.config/qtile/config.py`.
@@ -61,24 +61,6 @@ Miscellaneous and launching programs
 *   `[mod]` `Q` kills focused window
 *   `[mod]` `CTRL` `R` restarts Qtile
 *   `[mod]` `CTRL` `Q` shuts down Qtile
-
-* * *
-
-Configs
--------
-
-*   [archiso profile](https://github.com/woof-os/iso-profile)
-*   [qtile](https://github.com/woof-os/qtile)
-*   [rofi](https://github.com/woof-os/rofi)
-*   [dunst](https://github.com/woof-os/dunst)
-*   [calamares](https://github.com/woof-os/calamares)
-*   [alacritty](https://github.com/woof-os/alacritty)
-*   [starship](https://github.com/woof-os/starship)
-*   [qt5](https://github.com/woof-os/qt5)
-*   [zsh](https://github.com/woof-os/zshrc)
-*   [gtk theme](https://github.com/woof-os/tokyonight-gtk)
-*   [icons](https://github.com/woof-os/icon-config)
-*   [wallpapers](https://github.com/woof-os/wallpapers)
 
 * * *
 
