@@ -7,7 +7,7 @@
 Woof OS uses a tiling window manager, qtile, mainly controlled using the keyboard.  
 The keybinds listed here are declared in `~/.config/qtile/config.py`.
 
-By default, <kbd>[mod]</kbd> is the <kbd>Super/mod4</kbd> key, which is the ⊞ Win key on most keyboards, and the ⌘ Command key on Macs.
+By default, <kbd>[mod]</kbd> is the <kbd>Super/mod4</kbd> key, which is the <kbd>⊞ Win</kbd> key on most keyboards, and the <kbd>⌘ Command</kbd> key on Macs.
 
 ## Focus navigation
 
