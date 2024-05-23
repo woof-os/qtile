@@ -2,79 +2,61 @@
 
 ![main image](https://os.lewoof.xyz/images/qtile/s4.png)
 
----
-
-# Download Woof OS
-
-## LeWoof Mirror
-
-[Latest release](https://dl.os.lewoof.xyz/qtile/woofos-x86_64.iso)  
-[Browse downloads](https://dl.os.lewoof.xyz/qtile/)
-
-## Github Mirror
-
-[Latest release](https://github.com/woof-os/isos-qtile/releases/latest/download/woofos.iso)  
-[Browse downloads](https://github.com/woof-os/isos-qtile/releases)
-
----
-
 # Keybinds
 
 Woof OS uses a tiling window manager, qtile, mainly controlled using the keyboard.  
 The keybinds listed here are declared in `~/.config/qtile/config.py`.
 
-By default, \[mod\] is the Super/mod4 key, which is the ⊞ Win key on most keyboards, and the ⌘ Command key on Macs.
+By default, <kbd>[mod]</kbd> is the <kbd>Super/mod4</kbd> key, which is the ⊞ Win key on most keyboards, and the ⌘ Command key on Macs.
 
 ## Focus navigation
 
-- \[mod\] H moves focus to the **left**
-- \[mod\] L moves focus to the **right**
-- \[mod\] J moves focus **down**
-- \[mod\] K moves focus **up**
-- \[mod\] Space moves focus to the **next window**
-- \[mod\] . moves focus to the **next screen**
+- <kbd>[mod]</kbd> <kbd>H</kbd> moves focus to the **left**
+- <kbd>[mod]</kbd> <kbd>L</kbd> moves focus to the **right**
+- <kbd>[mod]</kbd> <kbd>J</kbd> moves focus **down**
+- <kbd>[mod]</kbd> <kbd>K</kbd> moves focus **up**
+- <kbd>[mod]</kbd> <kbd>Space</kbd> moves focus to the **next window**
+- <kbd>[mod]</kbd> <kbd>.</kbd> moves focus to the **next screen**
 
 The mouse can also be used to switch focus between windows by simply hovering over them.
 
-- \[mod\] 1/2/3/4/5/6/7/8/9 moves focus to the workspace assigned to the ID
+- <kbd>[mod]</kbd> <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd>/<kbd>5</kbd>/<kbd>6</kbd>/<kbd>7</kbd>/<kbd>8</kbd>/<kbd>9</kbd> moves focus to the workspace assigned to the ID
 
 ## Window arrangement
 
-- \[mod\] Shift H moves focused window to the **left**
-- \[mod\] Shift L moves focused window to the **right**
-- \[mod\] Shift J moves focused window **down**
-- \[mod\] Shift K moves focused window **up**
-- \[mod\] Shift Return toggles between split and unsplit sides of stack
-- \[mod\] Tab toggles between layouts
-- \[mod\] Shift 1/2/3/4/5/6/7/8/9 shifts focused window to the workspace assigned to the ID
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>H</kbd> moves focused window to the **left**
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>L</kbd> moves focused window to the **right**
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>J</kbd> moves focused window **down**
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>K</kbd> moves focused window **up**
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>R</kbd>eturn toggles between split and unsplit sides of stack
+- <kbd>[mod]</kbd> <kbd>Tab</kbd> toggles between layouts
+- <kbd>[mod]</kbd> <kbd>Shift</kbd> <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd>/<kbd>5</kbd>/<kbd>6</kbd>/<kbd>7</kbd>/<kbd>8</kbd>/<kbd>9</kbd> shifts focused window to the workspace assigned to the ID
 
 ## Window sizing
 
-- \[mod\] CTRL H grows window to the **left**
-- \[mod\] CTRL L grows window to the **right**
-- \[mod\] CTRL J grows window **down**
-- \[mod\] CTRL K grows window **up**
-- \[mod\] N resets all window sizes
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>H</kbd> grows window to the **left**
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>L</kbd> grows window to the **right**
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>J</kbd> grows window **down**
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>K</kbd> grows window **up**
+- <kbd>[mod]</kbd> <kbd>N</kbd> resets all window sizes
 
 ## Miscellaneous and launching programs
 
-- \[mod\] Return launches the terminal (alacritty)
-- \[mod\] R opens the Rofi run launcher
-- \[mod\] P opens the Rofi power menu
-- \[mod\] B launches the web browser (brave)
-- \[mod\] C launches the file manager (vifm)
-- \[mod\] Z opens copied PDF URL in Zathura
-- \[mod\] Y opens copied YouTube URL in MPV (using yt-dlp)
-- \[mod\] F opens the Flameshot GUI
-- \[mod\] S takes a full screenshot using Scrot
-- \[mod\] T spawns a command using a prompt
-- \[mod\] V shows the active windows through Rofi
-- \[mod\] D sends a notification including the current date and time
-- \[mod\] Q kills focused window
-- \[mod\] CTRL R restarts Qtile
-- \[mod\] CTRL Q shuts down Qtile
-
----
+- <kbd>[mod]</kbd> <kbd>Return</kbd> launches the terminal (alacritty)
+- <kbd>[mod]</kbd> <kbd>R</kbd> opens the Rofi run launcher
+- <kbd>[mod]</kbd> <kbd>P</kbd> opens the Rofi power menu
+- <kbd>[mod]</kbd> <kbd>B</kbd> launches the web browser (brave)
+- <kbd>[mod]</kbd> <kbd>C</kbd> launches the file manager (vifm)
+- <kbd>[mod]</kbd> <kbd>Z</kbd> opens copied PDF URL in Zathura
+- <kbd>[mod]</kbd> <kbd>Y</kbd> opens copied YouTube URL in MPV (using yt-dlp)
+- <kbd>[mod]</kbd> <kbd>F</kbd> opens the Flameshot GUI
+- <kbd>[mod]</kbd> <kbd>S</kbd> takes a full screenshot using Scrot
+- <kbd>[mod]</kbd> <kbd>T</kbd> spawns a command using a prompt
+- <kbd>[mod]</kbd> <kbd>V</kbd> shows the active windows through Rofi
+- <kbd>[mod]</kbd> <kbd>D</kbd> sends a notification including the current date and time
+- <kbd>[mod]</kbd> <kbd>Q</kbd> kills focused window
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>R</kbd> restarts Qtile
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>Q</kbd> shuts down Qtile
 
 # Gallery
 
@@ -105,4 +87,4 @@ The mouse can also be used to switch focus between windows by simply hovering ov
 - **Monero:** 88Ftpu3ncRyLv7Z2c14b9L4MsyWscEqLBJhENxviYtmtRfidDx6G9y3Xyd8aYF8NRV2c2dF5QZiyTfHwuWLH9qmsSpskLhj
 - **BuyMeACoffee:** [acutewoof](https://buymeacoffee.com/acutewoof)
 
-© 2023-2024 Vithushan. All Rights Reserved.[Vithushan (ACuteWoof)](https://lewoof.xyz)[Github](https://github.com/woof-os)
+© 2023-2024 [Vithushan (ACuteWoof)](https://lewoof.xyz). All Rights Reserved.
