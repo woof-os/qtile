@@ -86,5 +86,3 @@ The mouse can also be used to switch focus between windows by simply hovering ov
 
 - **Monero:** 88Ftpu3ncRyLv7Z2c14b9L4MsyWscEqLBJhENxviYtmtRfidDx6G9y3Xyd8aYF8NRV2c2dF5QZiyTfHwuWLH9qmsSpskLhj
 - **BuyMeACoffee:** [acutewoof](https://buymeacoffee.com/acutewoof)
-
-© 2023-2024 [Vithushan (ACuteWoof)](https://lewoof.xyz). All Rights Reserved.
