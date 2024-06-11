@@ -6,7 +6,7 @@ nm-applet &
 # calamares &
 # noisetorch &
 flameshot &
-easyeffects --gapplication-service &
+# easyeffects --gapplication-service &
 xfce4-power-manager &
-warpd -c ~/.config/warpd/warpdrc &
+# warpd -c ~/.config/warpd/warpdrc &
 picom &
