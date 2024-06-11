@@ -5,7 +5,7 @@ nm-applet &
 /usr/bin/ibus-daemon -dr &
 # calamares &
 # noisetorch &
-# flameshot &
+flameshot &
 easyeffects --gapplication-service &
 xfce4-power-manager &
 warpd -c ~/.config/warpd/warpdrc &

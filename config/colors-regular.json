@@ -1,0 +1,20 @@
+{
+  "bg": "#2e3440",
+  "fg": "#d8dee9",
+  "active": "#a3be8c",
+  "inactive": "#d8dee9",
+  "border_focus": "#b48ead",
+  "border_normal": "#2e3440",
+  "start": "#2e3440",
+  "groups_bg": "#2e3440",
+  "current_screen_tab": "#a3be8c",
+  "systray": "#2e3440",
+  "color2fg": "#8fbcbb",
+  "color2": "#2e3440",
+  "color1fg": "#81a1c1",
+  "color1": "#2e3440",
+  "color3fg": "#88c0d0",
+  "color3": "#2e3440",
+  "color4fg": "#5e81ac",
+  "color4": "#2e3440"
+}

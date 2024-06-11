@@ -1,7 +1,6 @@
 import os
 import json
 import subprocess
-from datetime import datetime
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -91,10 +90,11 @@ keys = [
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
     Key([mod], "s", lazy.spawn("scrot"), desc="Take full screen ss using scrot"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
-    Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="View in MPV"),
-    Key([mod, "control"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Rofi Power Menu"),
+    Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="Open YouTube video in MPV"),
+    Key([mod], "g", lazy.spawn("rofi -show filebrowser"), desc="Open YouTube video in MPV"),
+    Key([mod, "control"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Power Menu"),
     # Toggle between screens
-    Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
+    Key([mod], 'period', lazy.next_screen(), desc='Next display'),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -357,7 +357,8 @@ floating_layout = layout.Floating(
         Match(title="Farge"),
         Match(wm_class="org.gnome.Nautilus"),
         Match(wm_class="feh"),
-        Match(wm_class="plank"),
+        Match(wm_class="screenkey"),
+        Match(title="screenkey"),
         Match(wm_class="gnome-calculator"),
         Match(wm_class="blueberry"),
         Match(wm_class="protonvpn"),
@@ -393,6 +394,5 @@ def float_to_front(qtile):
 def _unswallow(window):
     if hasattr(window, "parent"):
         window.parent.minimized = False
-
 
 wmname = "LG3D"
