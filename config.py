@@ -93,8 +93,8 @@ keys = [
     Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="Open YouTube video in MPV"),
     Key([mod], "g", lazy.spawn("rofi -show filebrowser"), desc="Open YouTube video in MPV"),
     Key([mod, "control"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Power Menu"),
-    Key([mod], "a", lazy.spawn("brave notion.so"), desc="Open notion"),
-    Key([mod], "s", lazy.spawn("brave esv.org"), desc="Open ESV"),
+    Key([mod], "a", lazy.spawn("brave -new-window notion.so"), desc="Open notion"),
+    Key([mod], "s", lazy.spawn("brave -new-window esv.org"), desc="Open ESV"),
     # Toggle between screens
     Key([mod], 'period', lazy.next_screen(), desc='Next display'),
 ]
