@@ -91,10 +91,8 @@ keys = [
     Key([mod], "e", lazy.spawn("tauon"), desc="Open tauon music box"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
     Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="Open YouTube video in MPV"),
-    Key([mod], "g", lazy.spawn("rofi -show filebrowser"), desc="Open YouTube video in MPV"),
+    Key([mod], "g", lazy.spawn("rofi -show filebrowser"), desc="Rofi File Browser"),
     Key([mod, "control"], "p", lazy.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu"), desc="Power Menu"),
-    Key([mod], "a", lazy.spawn("brave -new-window notion.so"), desc="Open notion"),
-    Key([mod], "s", lazy.spawn("brave -new-window esv.org"), desc="Open ESV"),
     # Toggle between screens
     Key([mod], 'period', lazy.next_screen(), desc='Next display'),
 ]
