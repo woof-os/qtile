@@ -88,6 +88,7 @@ keys = [
         [mod], "v", lazy.spawn("rofi -show window"), desc="Show active windows in rofi"
     ),
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
+    Key([mod, "control"], "s", lazy.spawn("scrot -e 'xclip -selection clipboard -t image/png -i $f'"), desc="Take full screenshot to clipboard"),
     Key([mod], "e", lazy.spawn("tauon"), desc="Open tauon music box"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
     Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="Open YouTube video in MPV"),
