@@ -89,6 +89,7 @@ keys = [
     ),
     Key([mod], "f", lazy.spawn("flameshot gui"), desc="Open flameshot gui"),
     Key([mod, "control"], "s", lazy.spawn("scrot - | xclip -selection clipboard -target image/png"), desc="Take full screenshot to clipboard"),
+    Key([mod, "control"], "f", lazy.spawn("scrot -w $(xdo id -p PID) - | xclip -selection clipboard -target image/png"), desc="Take current window as screenshot to clipboard"),
     Key([mod], "e", lazy.spawn("tauon"), desc="Open tauon music box"),
     Key([mod], "z", lazy.spawn(f"{home}/.config/qtile/view.sh"), desc="View in Zathura"),
     Key([mod], "y", lazy.spawn(f"{home}/.config/qtile/yt.sh"), desc="Open YouTube video in MPV"),

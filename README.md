@@ -53,7 +53,8 @@ The mouse can also be used to switch focus between windows by simply hovering ov
 - <kbd>[mod]</kbd> <kbd>V</kbd> shows the active windows through Rofi
 - <kbd>[mod]</kbd> <kbd>D</kbd> sends a notification including the current date and time
 - <kbd>[mod]</kbd> <kbd>Q</kbd> kills focused window
-- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>S</kbd> takes a full screenshot using Scrot
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>S</kbd> takes a full screenshot using Scrot to clipboard
+- <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>F</kbd> takes a screenshot of the focused window using Scrot to clipboard
 - <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>P</kbd> opens the Rofi power menu
 - <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>R</kbd> restarts Qtile
 - <kbd>[mod]</kbd> <kbd>CTRL</kbd> <kbd>Q</kbd> shuts down Qtile
