@@ -375,7 +375,7 @@ def start_once():
 @hook.subscribe.startup
 def runner():
     subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
-    subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
+    # subprocess.Popen(["xwallpaper", "--zoom", wallpaper])
 
 floating_types = ["notification", "toolbar", "splash", "dialog", "dock"]
 
