@@ -221,7 +221,7 @@ widgets_list = lambda: [
     widget.Prompt(
         foreground=colors["active"],
         background=colors["groups_bg"],
-        font="JetBrains Mono Nerd Font",
+        font="JetBrains Mono",
         prompt="Woof: "
     ),
     widget.Sep(padding=6, linewidth=0, background=colors["seperator"]),
