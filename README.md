@@ -80,7 +80,6 @@ The mouse can also be used to switch focus between windows by simply hovering ov
 ## Contact
 
 - Email: [sutharshanvithushan@gmail.com](mailto:sutharshanvithushan@gmail.com)
-- Matrix: [#woof-os:mx.lewoof.xyz](https://matrix.to/#/#woof-os:matrix.org) | [@acutewoof:mx.lewoof.xyz](https://matrix.to/#/@acutewoof:matrix.org)
 - Discord: [Woof OS](https://discord.gg/2G2yGUAXUS)
 
 ## Donate
