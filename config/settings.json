@@ -1,1 +1,13 @@
-{"looks": {"wallpaper": "/etc/woofos/def.png", "caret_font_size": 49, "caret_font": "Font Awesome 5 Free Solid", "panel-opacity": 1.0, "panel-size": 20}, "display": {"screen-count": 1}}
+{
+  "looks": {
+    "wallpapers_dir": "/etc/woofos",
+    "wallpaper": "/etc/woofos/def.png",
+    "is_random": 1,
+    "wallpaper_mode": "fill",
+    "caret_font_size": 49,
+    "caret_font": "Font Awesome 5 Free Solid",
+    "panel-opacity": 1.0,
+    "panel-size": 20
+  },
+  "display": { "screen-count": 1 }
+}

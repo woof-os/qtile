@@ -1,4 +1,5 @@
 import os
+import random
 import json
 import subprocess
 
@@ -19,6 +20,9 @@ with open("{}/.config/qtile/config/colors.json".format(os.getenv("HOME"))) as fi
 
 colors = colors_json
 wallpaper = looks["wallpaper"]
+wallpaper_mode = looks["wallpaper_mode"]
+wallpapers_dir = looks["wallpapers_dir"]
+is_random = looks["is_random"] == 1
 
 mod = "mod4"
 terminal = "alacritty"
@@ -281,12 +285,28 @@ widgets_list = lambda: [
 
 ]
 
-# bar_margin = [int(layout_theme["margin"]/2), layout_theme["margin"], 0, layout_theme["margin"]]
 bar_margin = 0
 
+def random_wallpaper(wallpapers_dir: str, default_wallpaper: str) -> str:
+    image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.svg'}
+    
+    image_files = []
+    for root, dirs, files in os.walk(wallpapers_dir):
+        for file in files:
+            if os.path.splitext(file)[1].lower() in image_extensions:
+                full_path = os.path.join(root, file)
+                image_files.append(full_path)
+    
+    if image_files:
+        return random.choice(image_files)
+    else:
+        return default_wallpaper
+
+final_wallpaper = random_wallpaper(wallpapers_dir, wallpaper) if is_random else wallpaper
+
 screen0 = Screen(
-#     wallpaper=wallpaper,
-#     wallpaper_mode="fill",
+    wallpaper=final_wallpaper,
+    wallpaper_mode=wallpaper_mode,
     top=bar.Bar(
        widgets_list(),
        int(looks["panel-size"]),
@@ -296,19 +316,7 @@ screen0 = Screen(
    ),
 )
 
-screen1 = Screen(
-     wallpaper=wallpaper,
-     wallpaper_mode="fill",
-    top=bar.Bar(
-        widgets_list(),
-       int(looks["panel-size"]),
-       background=colors["bg"],
-       opacity=float(looks["panel-opacity"]),
-       margin=bar_margin,
-   ),
-)
-
-screens = [screen0, screen1]
+screens = [screen0]
 
 # Drag floating layouts.
 mouse = [
