@@ -84,5 +84,6 @@ The mouse can also be used to switch focus between windows by simply hovering ov
 
 ## Donate
 
-- **Monero:** 88Ftpu3ncRyLv7Z2c14b9L4MsyWscEqLBJhENxviYtmtRfidDx6G9y3Xyd8aYF8NRV2c2dF5QZiyTfHwuWLH9qmsSpskLhj
+- **Solana:** JDkK2kpBmPm6YyYnLYNHpw8FhKyZ9AQ2CQTqj6BQxFKY
+- **Bitcoin (native segwit):** bc1qh5m8v9xyd8l4yc7d3qfs5a83rqk3eukcjlw6sh
 - **BuyMeACoffee:** [acutewoof](https://buymeacoffee.com/acutewoof)
